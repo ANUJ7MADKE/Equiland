@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SlidingSquare from "../components/SlidingSquare";
+import SlidingSquare from "./SlidingSquare";
 
 const tabsData = {
   1: [
@@ -84,7 +84,7 @@ function InsightsGrid() {
   const [activeTab, setActiveTab] = useState(1);
 
   return (
-    <div className="min-h-screen w-full py-32 px-24">
+    <div className="min-h-screen w-full pt-32 pb-12 px-24">
       {/* Heading and Paragraph */}
       <div>
         <h2 className="text-[40px] leading-tight">

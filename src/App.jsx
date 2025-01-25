@@ -1,9 +1,12 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import HeroPage from './pages/HeroPage'
-import SaaSSection from './pages/SaaSSection'
+import SaaSSection from './components/SaaSSection'
 import SlidingSquare from './components/SlidingSquare'
-import InsightsGrid from './pages/InsightsGrid'
+import InsightsGrid from './components/InsightsSection'
+import MarketSection from './components/MarketSection'
+import ContactUsSection from './components/ContactUsSection'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -12,6 +15,9 @@ function App() {
       <HeroPage/>
       <SaaSSection/>
       <InsightsGrid/>
+      <MarketSection/>
+      <ContactUsSection/>
+      <Footer/>
     </div>
   )
 }
