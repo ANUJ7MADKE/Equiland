@@ -1,0 +1,27 @@
+import React, { useState } from "react";
+
+const SlidingSquare = () => {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className="relative w-full aspect-square bg-primary-dark overflow-hidden p-5"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <h1 className="text-secondary-cream text-3xl  ">
+        Primary Heading
+      </h1>
+      <div
+        className={`absolute inset-0 bg-[url('/dot-grid.svg')] bg-contain bg-repeat flex flex-col justify-between p-4 text-text-brownish bg- transition-transform duration-500 ${
+          hovered ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <h2 className="text-lg font-semibold">Smaller Heading</h2>
+        <p className="text-sm">This is a description at the bottom.</p>
+      </div>
+    </div>
+  );
+};
+
+export default SlidingSquare;

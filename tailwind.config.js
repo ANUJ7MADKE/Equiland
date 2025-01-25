@@ -16,8 +16,8 @@ export default {
         }
       },
       fontFamily: {
-        poppins: ["Poppins"],
-        lexend: ["Lexend"],
+        poppins: ["Poppins", "sans-serif"],
+        lexend: ["Lexend", "sans-serif"],
       }
     },
   },
