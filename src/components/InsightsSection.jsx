@@ -80,7 +80,7 @@ const tabsData = {
   ],
 };
 
-function InsightsGrid() {
+function InsightsSection() {
   const [activeTab, setActiveTab] = useState(1);
 
   return (
@@ -131,4 +131,4 @@ function InsightsGrid() {
   );
 }
 
-export default InsightsGrid;
+export default InsightsSection;
