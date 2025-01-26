@@ -10,7 +10,7 @@ import ContactUsSection from './components/ContactUsSection'
 import Footer from './components/Footer'
 import OurJourneyPage from './pages/OurJourneyPage'
 function App() {
-  const [canScroll, setCanScroll] = useState(true);
+  const [canScroll, setCanScroll] = useState(false);
 
   useLayoutEffect(() => {
     // Create a GSAP context
