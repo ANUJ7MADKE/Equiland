@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import gsap from 'gsap'
 import Navbar from './components/Navbar'
 import HeroPage from './pages/HeroPage'
@@ -10,6 +10,8 @@ import ContactUsSection from './components/ContactUsSection'
 import Footer from './components/Footer'
 
 function App() {
+  const [canScroll, setCanScroll] = useState(true);
+
   useLayoutEffect(() => {
     // Create a GSAP context
     const ctx = gsap.context(() => {
@@ -29,8 +31,8 @@ function App() {
 
   return (
     <div className='font-lexend text-text-brownish bg-secondary-cream'>
-      <Navbar/>
-      <HeroPage/>
+      <Navbar canScroll={canScroll} setCanScroll={setCanScroll}/>
+      <HeroPage canScroll={canScroll} setCanScroll={setCanScroll} />
       <SaaSSection/>
       <InsightsGrid/>
       <MarketSection/>

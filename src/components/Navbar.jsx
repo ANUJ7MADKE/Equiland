@@ -3,33 +3,40 @@ import React from "react";
 const navLinks = [
   {
     label: "Our Services",
-    path: "#",
+    section: "SaasSection",
   },
   {
     label: "Our Journey",
-    path: "#",
+    section: ""
   },
   {
     label: "Our Product",
-    path: "#",
+    section: "InsightsSection"
   },
   {
     label: "Get In Touch",
-    path: "#",
+    section: "ContactUsSection"
   },
   {
     label: "Join The Network",
-    path: "#",
+    section: ""
   },
 ];
 
-function Navbar() {
+const scrollToSection = (id) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+function Navbar({ canScroll, SetCanScroll }) {
   return (
     <div className=" py-12 px-24 flex items-center justify-between">
       <div className=""><img src="/full-logo.svg" alt="Full Logo" /></div>
       <div className="flex items-center gap-14">
         {navLinks.map((navLink, index) => (
-          <a href={navLink.path} className="text-primary-light font-medium whitespace-nowrap text-base font-poppins" key={index}>{navLink.label}</a>
+          <p onClick={() => {scrollToSection(navLink.section); SetCanScroll(true)}} className="text-primary-light font-medium whitespace-nowrap text-base font-poppins cursor-pointer" key={index}>{navLink.label}</p>
         ))}
       </div>
     </div>

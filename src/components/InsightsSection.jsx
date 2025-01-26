@@ -84,7 +84,7 @@ function InsightsGrid() {
   const [activeTab, setActiveTab] = useState(1);
 
   return (
-    <div className="min-h-screen w-full pt-32 pb-12 px-24">
+    <div id="InsightsSection" className="min-h-screen w-full pt-32 pb-12 px-24">
       {/* Heading and Paragraph */}
       <div>
         <h2 className="text-[40px] leading-tight">
