@@ -175,65 +175,86 @@ function HeroPage() {
   // Update the GSAP effect for text transition
   useEffect(() => {
     if (currentStage === 'STAGE_1') {
+      // Staggered reveal animation for each line
       gsap.fromTo(".stage-text",
         {
           opacity: 0,
-          y: 20,
-          clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)"
+          y: 50,
+          rotateX: -45,
+          transformOrigin: "0% 50% -50",
+          filter: "blur(8px)",
         },
         {
           opacity: 1,
           y: 0,
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          duration: 1,
-          ease: "power3.out",
+          rotateX: 0,
+          filter: "blur(0px)",
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power4.out",
           delay: 0.3
         }
       );
     } else {
+      // Elegant exit animation
       gsap.to(".stage-text", {
         opacity: 0,
-        y: -20,
-        duration: 0.5,
+        y: -30,
+        rotateX: 45,
+        filter: "blur(8px)",
+        duration: 0.8,
+        stagger: 0.1,
         ease: "power2.in"
       });
     }
+
     if (currentStage === 'STAGE_3') {
-      gsap.fromTo(".stage-3-image",
+      // Split text animation for stage 3
+      gsap.fromTo(".stage-text2",
         {
           opacity: 0,
-          scale: 0.95,
+          scale: 1.1,
+          y: 30,
+          filter: "blur(10px)",
+          transformOrigin: "50% 50%",
         },
         {
           opacity: 1,
           scale: 1,
-          duration: 1,
-          ease: "power3.in",
-        }
-      );
-    }
-    if (currentStage === 'STAGE_3') {
-      gsap.fromTo(".stage-text2",
-        {
-          opacity: 0,
-          y: 20,
-          clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)"
-        },
-        {
-          opacity: 1,
           y: 0,
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          duration: 1,
-          ease: "power3.out",
+          filter: "blur(0px)",
+          duration: 1.4,
+          stagger: 0.25,
+          ease: "elastic.out(1, 0.8)",
           delay: 0.3
         }
       );
+
+      // Smooth scale animation for the image
+      gsap.fromTo(".stage-3-image",
+        {
+          opacity: 0,
+          scale: 0.92,
+          rotate: -2,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1.5,
+          ease: "power3.out",
+        }
+      );
     } else {
+      // Elegant exit animation for stage 3 text
       gsap.to(".stage-text2", {
         opacity: 0,
-        y: -20,
-        duration: 0.5,
-        ease: "power2.in"
+        y: -40,
+        scale: 0.95,
+        filter: "blur(8px)",
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power3.in"
       });
     }
   }, [currentStage]);
