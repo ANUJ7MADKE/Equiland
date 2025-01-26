@@ -1,32 +1,39 @@
 import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
 
 const navLinks = [
   {
     label: "Our Services",
-    path: "/",
+    section: "SaasSection",
   },
   {
     label: "Our Journey",
-    path: "/our-journey",
+    section: "OurJourney"
   },
   {
     label: "Our Product",
-    path: "#",
+    section: "InsightsSection"
   },
   {
     label: "Get In Touch",
-    path: "#",
+    section: "ContactUsSection"
   },
   {
     label: "Join The Network",
-    path: "#",
+    section: ""
   },
 ];
 
-function Navbar() {
+const scrollToSection = (id) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+function Navbar({ canScroll, SetCanScroll }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="py-6 lg:py-12 px-5 lg:px-24 flex items-center justify-between ">
       <div className="">
@@ -34,13 +41,7 @@ function Navbar() {
       </div>
       <div className="items-center gap-14 hidden xl:flex">
         {navLinks.map((navLink, index) => (
-          <Link
-            to={navLink.path}
-            className="text-primary-light font-medium whitespace-nowrap text-base font-poppins"
-            key={index}
-          >
-            {navLink.label}
-          </Link>
+          <p onClick={() => {scrollToSection(navLink.section); SetCanScroll(true)}} className="text-primary-light font-medium whitespace-nowrap text-base font-poppins cursor-pointer" key={index}>{navLink.label}</p>
         ))}
       </div>
       <div className="block xl:hidden">
@@ -59,7 +60,7 @@ function Navbar() {
           </button>
         </div>
         <div className="flex flex-col gap-8 mt-20">
-          {navLinks.map((navLink, index) => (
+          {/* {navLinks.map((navLink, index) => (
             <Link
             onClick={()=>setIsMenuOpen(false)}
               to={navLink.path}
@@ -68,7 +69,7 @@ function Navbar() {
             >
               {navLink.label}
             </Link>
-          ))}
+          ))} */}
         </div>
       </div>
       <div className={`hidden md:block fixed w-full h-screen bg-black opacity-20 z-10 inset-0 duration-300 ${isMenuOpen ?"translate-x-0":"translate-x-[100%]"}`}></div>

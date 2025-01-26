@@ -23,11 +23,10 @@ const SCROLL_STAGES = {
   // Add more stages as needed
 };
 
-function HeroPage() {
+function HeroPage({ canScroll, setCanScroll }) {
   const [activeTab, setActiveTab] = useState("SaaS Platform");
   const [showLogo, setShowLogo] = useState(false);
   const [currentStage, setCurrentStage] = useState('INITIAL');
-  const [canScroll, setCanScroll] = useState(false);
   const [canProgress, setCanProgress] = useState(false);
   const videoRef = useRef(null);
 
@@ -269,6 +268,32 @@ function HeroPage() {
     return () => clearTimeout(timer);
   }, []); // Empty dependency array means this runs once on mount
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const animationElement = document.getElementById('animation');
+      if (animationElement) {
+        const rect = animationElement.getBoundingClientRect();
+        const isInView = rect.top - 190 >= 0 && rect.bottom - 190 <= window.innerHeight ;
+        if (isInView && currentStage !== 'STAGE_3') {
+          setCanScroll(false);
+        } else {
+          setCanScroll(true);
+        }
+      } else {
+        setCanScroll(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [currentStage]);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="py-20 font-lexend w-full h-full flex items-center justify-center">
@@ -297,7 +322,7 @@ function HeroPage() {
           </div>
         </>
       )}
-      <div className="flex flex-col gap-44 items-center justify-center w-full">
+      <div id="animation" className="flex flex-col gap-44 items-center justify-center w-full">
         <div className="flex items-center gap-40 w-full justify-center relative">
           <div className="w-[500px] h-[350px] relative flex items-center justify-start">
             {SCROLL_STAGES[currentStage].type === 'image' ? (
@@ -365,7 +390,7 @@ function HeroPage() {
         <div className="flex items-start gap-20 text-[40px]">
           <div
             className={`cursor-pointer `}
-            onClick={() => setActiveTab("SaaS Platform")}
+            onClick={() => { setActiveTab("SaaS Platform"); scrollToSection("SaasSection"); setCanScroll(true);}}
           >
             <h2>SaaS Platform</h2>
             {activeTab === "SaaS Platform" && (
@@ -374,7 +399,7 @@ function HeroPage() {
           </div>
           <div
             className={`cursor-pointer `}
-            onClick={() => setActiveTab("Insights Agency")}
+            onClick={() => {setActiveTab("Insights Agency"); scrollToSection("InsightsSection"); setCanScroll(true);}}
           >
             <h2>Insights Agency</h2>
             {activeTab === "Insights Agency" && (

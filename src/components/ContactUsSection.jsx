@@ -3,7 +3,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 function ContactUsSection() {
   return (
-    <div className="pt-16 pb-32 px-24">
+    <div id="ContactUsSection" className="pt-16 pb-32 px-24">
       <h2 className="text-[40px] leading-[46px]">
         We are just getting started,{" "}
         <span className="text-primary-light">
@@ -32,7 +32,7 @@ function ContactUsSection() {
           <div className="border-b border-text-brownish">
             <textarea
               type="text-area"
-              className="w-full  bg-secondary-cream p-2 text-lg placeholder:text-primary-light placeholder:text-lg focus:outline-none"
+              className="w-full max-h-40 min-h-20 bg-secondary-cream p-2 text-lg placeholder:text-primary-light placeholder:text-lg focus:outline-none"
               placeholder="Leave us a message or upload a written brief"
             />
           </div>
