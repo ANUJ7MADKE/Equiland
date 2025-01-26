@@ -52,7 +52,9 @@ function HeroPage() {
       }
       touchStart.current = null;
     };
-
+    if(canScroll){
+      document.body.style.overflow = 'scroll';
+    }
     // Add event listeners for both wheel and touch events
     window.addEventListener('wheel', handleWheel);
     window.addEventListener('touchstart', handleTouchStart);
@@ -76,18 +78,44 @@ function HeroPage() {
     if (currentIndex < stageSequence.length - 1) {
       setCanProgress(false);
       const newStage = stageSequence[currentIndex + 1];
-      setCurrentStage(newStage);
       
-      if (videoRef.current) {
+      if (videoRef.current && SCROLL_STAGES[newStage].videoSrc) {
+        // Store current video time before transition
         const currentTime = videoRef.current.currentTime;
-        if (SCROLL_STAGES[newStage].videoSrc) {
-          videoRef.current.src = SCROLL_STAGES[newStage].videoSrc;
-          videoRef.current.load();
-          videoRef.current.play().then(() => {
-            videoRef.current.currentTime = currentTime;
+        
+        // Create and prepare the new video element
+        const newVideo = document.createElement('video');
+        newVideo.src = SCROLL_STAGES[newStage].videoSrc;
+        newVideo.muted = true;
+        newVideo.playsInline = true;
+        newVideo.loop = true;
+        
+        // Preload the new video
+        newVideo.load();
+        newVideo.play().then(() => {
+          // Fade out current video
+          gsap.to(videoRef.current, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => {
+              // Switch to new video
+              videoRef.current.src = SCROLL_STAGES[newStage].videoSrc;
+              videoRef.current.load();
+              videoRef.current.play().then(() => {
+                // Set the time of new video to match previous video
+                videoRef.current.currentTime = currentTime;
+                // Fade in new video
+                gsap.to(videoRef.current, {
+                  opacity: 1,
+                  duration: 0.5
+                });
+              });
+            }
           });
-        }
+        });
       }
+      
+      setCurrentStage(newStage);
 
       // Enable scrolling if moving to or past STAGE_3
       if (newStage === 'STAGE_3') {
@@ -139,7 +167,7 @@ function HeroPage() {
         stagger: 0.3,
         ease: "power3.out"
       });
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -171,7 +199,21 @@ function HeroPage() {
       });
     }
     if (currentStage === 'STAGE_3') {
-      gsap.fromTo(".stage-text",
+      gsap.fromTo(".stage-3-image",
+        {
+          opacity: 0,
+          scale: 0.95,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "power3.in",
+        }
+      );
+    }
+    if (currentStage === 'STAGE_3') {
+      gsap.fromTo(".stage-text2",
         {
           opacity: 0,
           y: 20,
@@ -206,8 +248,9 @@ function HeroPage() {
     return () => clearTimeout(timer);
   }, []); // Empty dependency array means this runs once on mount
 
+
   return (
-    <div className="py-20 font-lexend w-full h-screen">
+    <div className="py-20 font-lexend w-full h-full flex items-center justify-center">
       {!canScroll && (
         <>
           <button 
@@ -224,23 +267,23 @@ function HeroPage() {
           
           {/* Added loader indicator */}
           <div className="fixed bottom-8 right-0 transform-translate-x-1/2 flex flex-col items-center gap-2">
-            <div className={`w-12 h-12 rounded-full border-4 border-gray-200 border-t-primary-light ${
-              canProgress ? 'animate-none' : 'animate-spin'
+            <div className={`w-5 h-5 rounded-full border-4 border-gray-200 border-t-primary-light ${
+              canProgress ? 'opacity-0' : 'animate-spin'
             }`}></div>
-            <p className="text-sm text-gray-600">
+            {/* <p className="text-sm text-gray-600">
               {canProgress ? 'Scroll to continue' : 'Loading...'}
-            </p>
+            </p> */}
           </div>
         </>
       )}
       <div className="flex flex-col gap-44 items-center justify-center w-full">
-        <div className="flex items-center gap-40 w-full">
+        <div className="flex items-center gap-40 w-full justify-center relative">
           <div className="w-[500px] h-[350px] relative flex items-center justify-start">
             {SCROLL_STAGES[currentStage].type === 'image' ? (
               <img 
                 src={SCROLL_STAGES[currentStage].src} 
                 alt="101" 
-                className="ml-[3rem] object-cover"
+                className="ml-[3rem] object-cover stage-3-image opacity-0"
                 style={{
                   width: "500px",
                   height: "150px"
@@ -261,6 +304,7 @@ function HeroPage() {
                 <source src={SCROLL_STAGES[currentStage].videoSrc} type="video/mp4" />
               </video>
             )}
+            <div className="absolute bottom-0 left-[3rem] w-full h-1 bg-secondary-cream"></div>
           </div>
           <div className={`flex flex-col gap-10 ${showLogo ? "opacity-100" : "opacity-0"}`}>
             {(currentStage=='INITIAL'||currentStage=='STAGE_1')&&  <>
@@ -279,8 +323,8 @@ function HeroPage() {
                 <h1 className="text-[40px] leading-tight hero-animation">
                 At the core of any business,<br/>
                  {currentStage=='STAGE_3'&& <><span className={`stage-text2 text-primary-light`}>
-                 insights are driven by human </span><br/> <span className={`stage-text2 text-primary-light`}> conversations and immersions,  </span></>
-                 }<br/>
+                 insights are driven by human </span><br/> <span className={`stage-text2 text-primary-light`}> conversations and immersions,  </span><br/></>
+                 }
                   technology only augments your<br/> decision making
                 </h1>
                {currentStage=='STAGE_3'&& <p className=" font-poppins text-lg hero-animation stage-text2">
