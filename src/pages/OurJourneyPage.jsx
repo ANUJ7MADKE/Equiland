@@ -5,7 +5,7 @@ import JourneyPassion from '../components/JourneyPassion'
 
 function OurJourneyPage() {
   return (
-    <div>
+    <div id="OurJourney" className='pt-16 pb-32 px-24'>
       <JourneyHero />
       <JourneyInfo />
       <JourneyPassion />
