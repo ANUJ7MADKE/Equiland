@@ -28,17 +28,17 @@ function JourneyInfo() {
             </p>
           </div>
         </div>
-        {/* <div className="flex w-full items-center gap-4 lg:gap-14 lg:items-stretch">
+        <div className="flex w-full items-center gap-4 lg:gap-14 lg:items-stretch">
           <img src="/logo-blue-square.svg" className="aspect-square w-[20%]" alt="Logo" />
 
-          <h2 className="text-lg lg:text-[40px]  leading-tight">
+          <h2 className="text-sm md:text-lg lg:text-[40px]  xl:leading-tight">
             One SaaS platform{" "}
             <span className="text-primary-light">
               streamlining the entire primary research funnel
             </span>{" "}
             adding transparency, quality, and agility to your marketing process
           </h2>
-        </div> */}
+        </div>
       </div>
     </div>
   );
