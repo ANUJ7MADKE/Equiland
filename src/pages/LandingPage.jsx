@@ -10,7 +10,7 @@ function LandingPage({ canScroll, setCanScroll }) {
   return (
     <div>
       <HeroPage canScroll={canScroll} setCanScroll={setCanScroll} />
-      <SaaSSection />
+      <SaaSSection canScroll={canScroll} setCanScroll={setCanScroll}  />
       <InsightsSection />
       <MarketSection />
       <ContactUsSection />

@@ -271,27 +271,6 @@ function HeroPage({ canScroll, setCanScroll }) {
     return () => clearTimeout(timer);
   }, []); // Empty dependency array means this runs once on mount
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const animationElement = document.getElementById("animation");
-      if (animationElement) {
-        const rect = animationElement.getBoundingClientRect();
-        const isInView =
-          rect.top - 190 >= 0 && rect.bottom - 190 <= window.innerHeight;
-        if (isInView && currentStage !== "STAGE_3") {
-          setCanScroll(false);
-        } else {
-          setCanScroll(true);
-        }
-      } else {
-        setCanScroll(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentStage]);
-
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -305,7 +284,7 @@ function HeroPage({ canScroll, setCanScroll }) {
         <>
           <button
             onClick={progressToNextStage}
-            className={`fixed bottom-4 right-4 px-4 py-2 rounded  ${
+            className={`fixed bottom-4 right-4 px-4 py-2 rounded opacity-0 ${
               canProgress
                 ? "bg-primary-light cursor-pointer"
                 : "bg-gray-400 cursor-not-allowed"
@@ -373,18 +352,18 @@ function HeroPage({ canScroll, setCanScroll }) {
               <>
                 <h1 className="text-[40px] leading-tight hero-animation">
                   We are{" "}
-                  {currentStage == "STAGE_1" && (
+                  {
                     <>
-                      <span className={`stage-text text-primary-light`}>
+                      <span className={`stage-text text-primary-light ${currentStage == "STAGE_1"?'opacity-100':'opacity-0'}`}>
                         a tech powered full-{" "}
                       </span>
-                      <br />
-                      <span className={`stage-text text-primary-light`}>
-                        service insights agency,{" "}
-                      </span>
+                    
                     </>
-                  )}
-                  rooted in <br /> classical principles
+                  }
+                  rooted in <br /> classical principles  <br />
+                      <span className={`stage-text text-primary-light ${currentStage == "STAGE_1"?'opacity-100':'opacity-0'}`}>
+                      consumer insights agency,
+                      </span>
                 </h1>
                 {currentStage == "STAGE_1" && (
                   <p className=" font-poppins text-lg hero-animation stage-text">
@@ -401,22 +380,22 @@ function HeroPage({ canScroll, setCanScroll }) {
               <>
                 <h1 className="text-[40px] leading-tight hero-animation">
                   At the core of any business,
-                  <br />
-                  {currentStage == "STAGE_3" && (
+                
+                  {
                     <>
-                      <span className={`stage-text2 text-primary-light`}>
-                        insights are driven by human{" "}
+                      <span className={`stage-text2 text-primary-light ${currentStage == "STAGE_3"?'opacity-100':'opacity-0'}`}>
+                        insights are driven
                       </span>
-                      <br />{" "}
-                      <span className={`stage-text2 text-primary-light`}>
-                        {" "}
-                        conversations and immersions,{" "}
-                      </span>
+                     
+                    
                       <br />
                     </>
-                  )}
-                  technology only augments your
-                  <br /> decision making
+                  }
+                  Technology only augments your decision making                   <br />{" "}
+                      <span className={`stage-text2 text-primary-light ${currentStage == "STAGE_3"?'opacity-100':'opacity-0'}`}>
+                        {" "}
+                        By human conversations and immersions
+                        </span>
                 </h1>
                 {currentStage == "STAGE_3" && (
                   <p className=" font-poppins text-lg hero-animation stage-text2">
