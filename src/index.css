@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -20,4 +21,13 @@
       opacity: 1;
       visibility: hidden;
     }
+  }
+
+  body::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }

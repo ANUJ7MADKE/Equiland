@@ -1,114 +1,100 @@
 import React, { useState, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
+import gsap from "gsap";
 
-function SaaSSection({canScroll, setCanScroll}) {
+function SaaSSection() {
   const [showImage, setShowImage] = useState(false);
-  const [currentStage, setCurrentStage] = useState(0);
-  const [canProgress, setCanProgress] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasScrolledDown, setHasScrolledDown] = useState(false);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Triggers when 10% of the element is visible
+    );
+
+    const section = document.getElementById('SaasSection');
+    if (section) {
+      observer.observe(section);
+    }
+
+    // Add scroll event listener
     const handleScroll = () => {
-      const section = document.getElementById("SaasSection");
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        const isInView = rect.top <= 0 && rect.bottom >= 0;
-        
-        if (isInView && !canProgress) {
-          setCanProgress(true);
-        }
+      if (isVisible && window.scrollY > section?.offsetTop) {
+        setHasScrolledDown(true);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [canProgress]);
+    window.addEventListener('scroll', handleScroll);
 
-  useEffect(() => {
-    const handleWheel = (event) => {
-      if (canProgress && event.deltaY > 0 && currentStage < 2) {
-        setCurrentStage(prev => prev + 1);
-        setCanProgress(false);
-        setTimeout(() => setCanProgress(true), 1000);
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel);
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [canProgress, currentStage]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowImage(true);
-      setCanProgress(true);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById("SaasSection");
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        // Check if the section's top is at the viewport's top
-        const isAtTop = Math.abs(rect.top) < 10; // Small threshold for better detection
-        
-        if (isAtTop && currentStage < 2) {
-          document.body.style.overflow = 'hidden';
-          if (!canProgress) {
-            setCanProgress(true);
-          }
-        } else if (currentStage >= 2) {
-          document.body.style.overflow = 'auto';
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.body.style.overflow = 'auto';
+      if (section) {
+        observer.unobserve(section);
+      }
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [canProgress, currentStage]);
+  }, [isVisible]); // Added isVisible to dependencies
 
+  useEffect(() => {
+    if(hasScrolledDown){
+      gsap.fromTo(
+        ".blue-text",
+        {
+          opacity: 0,
+          y: 50,
+          rotateX: -45,
+          transformOrigin: "0% 50% -50",
+          filter: "blur(8px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          filter: "blur(0px)",
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power4.out",
+          delay: 0.3,
+        }
+      );
+      const timer = setTimeout(() => {
+        setShowImage(true);
+      }, 2000);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [hasScrolledDown]);
+
+  useEffect(() => {
+    if(hasScrolledDown){
+      document.body.style.overflow = "hidden";
+      
+      const timer = setTimeout(() => {
+        document.body.style.overflow = "auto";
+      }, 2000);
+
+      return () => {
+        clearTimeout(timer);
+        document.body.style.overflow = "auto";
+      };
+    }
+  }, [hasScrolledDown]);
   return (
     <div id="SaasSection" className="pt-32 pl-24 bg-primary-dark text-secondary-cream flex flex-col gap-14">
-        {!canScroll && (
-        <>
-          <button
-            className={`fixed bottom-4 right-4 px-4 py-2 rounded opacity-0 ${
-              canProgress
-                ? "bg-primary-light cursor-pointer"
-                : "bg-gray-400 cursor-not-allowed"
-            }`}
-            disabled={!canProgress}
-          >
-            {canProgress ? "Next Stage" : "Please wait..."}
-          </button>
-
-          {/* Added loader indicator */}
-          <div className="fixed bottom-8 right-0 transform-translate-x-1/2 flex flex-col items-center gap-2">
-            <div
-              className={`w-5 h-5 rounded-full border-4 border-gray-200 border-t-primary-light ${
-                canProgress ? "opacity-0" : "animate-spin"
-              }`}
-            ></div>
-            {/* <p className="text-sm text-gray-600">
-              {canProgress ? 'Scroll to continue' : 'Loading...'}
-            </p> */}
-          </div>
-        </>
-      )}
-      <div className={`flex gap-14 items-stretch transition-opacity duration-500 `}>
+      <div className="flex gap-14 items-stretch">
         <img src="/logo-blue-square.svg" alt="Logo" />
-        <h2 className="text-[40px] mr-24 leading-tight">
+
+        <h2 className="text-[40px]  mr-24 leading-tight">
           One SaaS platform{" "}
-          <span className={`text-primary-light ${currentStage >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+        {hasScrolledDown && <span className="text-primary-light blue-text">
             streamlining the entire primary research funnel
-          </span>{" "}
+          </span>}
           for transparency, quality, and agility to your marketing process
         </h2>
       </div>
-      <div className={`flex items-center justify-between transition-opacity duration-500 ${currentStage >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+      <div className="flex items-center justify-between">
         <div className="flex flex-col gap-16 w-[30%] font-poppins text-lg ">
           <div className="flex flex-col gap-8 ">
             <p className="tracking-wide">
@@ -124,7 +110,7 @@ function SaaSSection({canScroll, setCanScroll}) {
           </div>
           <button className="w-fit flex items-center gap-3 font-lexend ">
             <div className={`cursor-pointer `}>
-              <h2 className="font-medium whitespace-nowrap">Placeholder know more CTA</h2>
+              <h2 className="font-medium whitespace-nowrap">click to visit SaaS platform</h2>
               <div className="h-[1px] bg-secondary-cream  w-full"></div>
             </div>
             <div className="bg-[#2ED89F] w-10 h-10 rounded-full flex items-center justify-center">
@@ -132,12 +118,12 @@ function SaaSSection({canScroll, setCanScroll}) {
             </div>
           </button>
         </div>
-        <div className="w-[60%]">
-          <img 
+        <div className="w-[60%] h-[657px]">
+        { hasScrolledDown && <img 
             src={showImage ? "/saas-timeline.svg" : "/saasplat.gif"}
             alt="SaaS platform demonstration" 
-            className={`w-full ${currentStage >= 2 ? 'opacity-100' : 'opacity-0'}`}
-          />
+            className="w-full h-full "
+          />}
         </div>
       </div>
     </div>

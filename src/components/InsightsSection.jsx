@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import SlidingSquare from "./SlidingSquare";
+import gsap from "gsap";
 
 const tabsData = {
   1: [
@@ -82,16 +83,92 @@ const tabsData = {
 
 function InsightsSection() {
   const [activeTab, setActiveTab] = useState(1);
+  const [showImage, setShowImage] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasScrolledDown, setHasScrolledDown] = useState(false);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Triggers when 10% of the element is visible
+    );
+
+    const section = document.getElementById('InsightsSection');
+    if (section) {
+      observer.observe(section);
+    }
+
+    // Add scroll event listener
+    const handleScroll = () => {
+      if (isVisible && window.scrollY > section?.offsetTop) {
+        setHasScrolledDown(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isVisible]); // Added isVisible to dependencies
+
+  useEffect(() => {
+    if(hasScrolledDown){
+      gsap.fromTo(
+        ".blue-text",
+        {
+          opacity: 0,
+          y: 50,
+          rotateX: -45,
+          transformOrigin: "0% 50% -50",
+          filter: "blur(8px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          filter: "blur(0px)",
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power4.out",
+          delay: 0.3,
+        }
+      );
+      const timer = setTimeout(() => {
+        setShowImage(true);
+      }, 2000);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [hasScrolledDown]);
+  useEffect(() => {
+    if(hasScrolledDown){
+      document.body.style.overflow = "hidden";
+      
+      const timer = setTimeout(() => {
+        document.body.style.overflow = "auto";
+      }, 2000);
+
+      return () => {
+        clearTimeout(timer);
+        document.body.style.overflow = "auto";
+      };
+    }
+  }, [hasScrolledDown]);
   return (
     <div id="InsightsSection" className="min-h-screen w-full pt-32 pb-12 px-24">
       {/* Heading and Paragraph */}
       <div>
         <h2 className="text-[40px] leading-tight">
           Industry-agnostic insighting services{" "}
-          <span className="text-primary-light">
+       { hasScrolledDown&&  <span className="text-primary-light blue-text">
             designed for B2C, B2B, and D2C organisations
-          </span>{" "}
+          </span>}{" "}
           to demystify macro trends
         </h2>
         <p className="font-poppins text-lg mt-5">
@@ -107,6 +184,8 @@ function InsightsSection() {
         {tabsData[activeTab].map((item, index) => (
           <SlidingSquare
             key={index}
+            index={index}
+            sethov={hasScrolledDown}
             heading={item.heading}
             text={item.text}
             colSpan={item.colSpan}

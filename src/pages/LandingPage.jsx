@@ -8,7 +8,7 @@ import ContactUsSection from "../components/ContactUsSection";
 
 function LandingPage({ canScroll, setCanScroll }) {
   return (
-    <div>
+    <div className="no-scrollbar">
       <HeroPage canScroll={canScroll} setCanScroll={setCanScroll} />
       <SaaSSection canScroll={canScroll} setCanScroll={setCanScroll}  />
       <InsightsSection />

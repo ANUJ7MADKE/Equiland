@@ -121,12 +121,12 @@ function HeroPage({ canScroll, setCanScroll }) {
         setTimeout(() => {
           document.body.style.overflow = "auto";
           setCanScroll(true);
-        }, 3000);
+        }, 2000);
       }
 
       setTimeout(() => {
         setCanProgress(true);
-      }, 3000);
+      }, 2000);
     } else {
       // Enable scrolling when reaching the final stage
       document.body.style.overflow = "auto";
@@ -266,10 +266,31 @@ function HeroPage({ canScroll, setCanScroll }) {
     // Set initial delay before allowing progression
     const timer = setTimeout(() => {
       setCanProgress(true);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []); // Empty dependency array means this runs once on mount
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const animationElement = document.getElementById("animation");
+      if (animationElement) {
+        const rect = animationElement.getBoundingClientRect();
+        const isInView =
+          rect.top - 190 >= 0 && rect.bottom - 190 <= window.innerHeight;
+        if (isInView && currentStage !== "STAGE_3") {
+          setCanScroll(false);
+        } else {
+          setCanScroll(true);
+        }
+      } else {
+        setCanScroll(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [currentStage]);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -279,7 +300,7 @@ function HeroPage({ canScroll, setCanScroll }) {
   };
 
   return (
-    <div className="py-20 font-lexend w-full h-full flex items-center justify-center">
+    <div className="py-20 font-lexend w-full h-full flex items-center justify-center ">
       {!canScroll && (
         <>
           <button
@@ -295,7 +316,7 @@ function HeroPage({ canScroll, setCanScroll }) {
           </button>
 
           {/* Added loader indicator */}
-          <div className="fixed bottom-8 right-0 transform-translate-x-1/2 flex flex-col items-center gap-2">
+          <div className="fixed bottom-8 right-5 transform-translate-x-1/2 flex flex-col items-center gap-2">
             <div
               className={`w-5 h-5 rounded-full border-4 border-gray-200 border-t-primary-light ${
                 canProgress ? "opacity-0" : "animate-spin"

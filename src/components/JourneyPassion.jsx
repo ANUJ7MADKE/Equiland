@@ -10,8 +10,10 @@ function JourneyPassion() {
         </span>{" "}
         to demystify macro trends
       </h2>
-      <div className="flex items-center justify-start lg:justify-center p-8  bg-[url('/dot-grid.svg')] bg-contain bg-repeat order-1">
-        <img src="/glass.svg" alt="" className="w-[40%] lg:w-[50%]" />
+      <div className="flex items-center justify-start lg:justify-center p-8   bg-contain bg-repeat order-1 relative">
+      <img src="/scopesearch3.gif" alt="" className="w-[50%] lg:w-[70%] absolute top-0 left-0 right-0 bottom-0 z-[10]" />
+
+        <img src="/dot-grid.svg" alt="" className="w-[50%] lg:w-[65%] absolute top-0 left-0 right-0 bottom-0" />
       </div>
       <div className="flex flex-col gap-5 font-poppins text-xs lg:text-lg order-3">
         <p className="">

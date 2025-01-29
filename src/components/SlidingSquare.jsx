@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
-const SlidingSquare = ({ heading, text, colSpan, rowSpan }) => {
+const SlidingSquare = ({ heading, text, colSpan, rowSpan,sethov,index }) => {
   const [hovered, setHovered] = useState(false);
-
+  useEffect(() => {
+    if(sethov && index==0){
+      setHovered(true)
+    }
+  }, [sethov])
   return (
     <div
       className={`relative w-full ${
