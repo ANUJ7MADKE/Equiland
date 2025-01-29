@@ -1,26 +1,50 @@
 import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+
+// const navLinks = [
+//   {
+//     label: "Our Services",
+//     type: "section",
+//     to: "SaasSection",
+//   },
+//   {
+//     label: "Our Journey",
+//     type: "page",
+//     to: "/our-journey",
+//   },
+//   {
+//     label: "Our Product",
+//     type: "section",
+//     to: "InsightsSection",
+//   },
+//   {
+//     label: "Get In Touch",
+//     type: "section",
+//     to: "/#ContactUsSection",
+//   },
+// ];
 
 const navLinks = [
   {
     label: "Our Services",
+    page: "/",
     section: "SaasSection",
   },
   {
     label: "Our Journey",
-    section: "OurJourney"
+    page: "/our-journey",
+    section: "",
   },
   {
     label: "Our Product",
-    section: "InsightsSection"
+    page: "/",
+    section: "InsightsSection",
   },
   {
     label: "Get In Touch",
-    section: "ContactUsSection"
-  },
-  {
-    label: "Join The Network",
-    section: ""
+    page: "/",
+    section: "ContactUsSection",
   },
 ];
 
@@ -34,6 +58,20 @@ const scrollToSection = (id) => {
 function Navbar({ canScroll, SetCanScroll }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handleNavigation = (page, section) => {
+    navigate(page); // Navigate to the page first
+
+    // Wait a bit before scrolling to ensure the page loads
+    setTimeout(() => {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   return (
     <div className="py-6 lg:py-12 px-5 lg:px-24 flex items-center justify-between ">
       <div className="">
@@ -41,7 +79,13 @@ function Navbar({ canScroll, SetCanScroll }) {
       </div>
       <div className="items-center gap-14 hidden xl:flex">
         {navLinks.map((navLink, index) => (
-          <p onClick={() => {scrollToSection(navLink.section); SetCanScroll(true)}} className="text-primary-light font-medium whitespace-nowrap text-base font-poppins cursor-pointer" key={index}>{navLink.label}</p>
+          <p
+            className="text-primary-light font-medium whitespace-nowrap text-base font-poppins cursor-pointer"
+            key={index}
+            onClick={() => handleNavigation(navLink.page, navLink.section)}
+          >
+            {navLink.label}
+          </p>
         ))}
       </div>
       <div className="block xl:hidden">
@@ -54,25 +98,28 @@ function Navbar({ canScroll, SetCanScroll }) {
           isMenuOpen ? "" : "translate-x-[600%]"
         }`}
       >
-        <div className="w-full flex justify-end">
+        <div className="w-full text-zinc-900 flex justify-end">
           <button onClick={() => setIsMenuOpen(false)} className="">
             <FiX size={24} />
           </button>
         </div>
         <div className="flex flex-col gap-8 mt-20">
-          {/* {navLinks.map((navLink, index) => (
-            <Link
-            onClick={()=>setIsMenuOpen(false)}
-              to={navLink.path}
-              className="text-primary-light font-medium whitespace-nowrap text-base font-poppins"
+          {navLinks.map((navLink, index) => (
+            <p
+              className="text-primary-light font-medium whitespace-nowrap text-base font-poppins cursor-pointer"
               key={index}
+              onClick={() => handleNavigation(navLink.page, navLink.section)}
             >
               {navLink.label}
-            </Link>
-          ))} */}
+            </p>
+          ))}
         </div>
       </div>
-      <div className={`hidden md:block fixed w-full h-screen bg-black opacity-20 z-10 inset-0 duration-300 ${isMenuOpen ?"translate-x-0":"translate-x-[100%]"}`}></div>
+      <div
+        className={`hidden md:block fixed w-full h-screen bg-black opacity-20 z-10 inset-0 duration-300 ${
+          isMenuOpen ? "translate-x-0" : "translate-x-[100%]"
+        }`}
+      ></div>
     </div>
   );
 }

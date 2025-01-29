@@ -2,7 +2,7 @@ import React from "react";
 
 function JourneyHero() {
   return (
-    <div className="py-12 lg:py-28 px-5 lg:px-24 relative">
+    <div className="py-12 lg:py-28 px-5 lg:px-24 relative overflow-hidden">
       {/* heading */}
       <h1 className="text-lg lg:text-[32px] xl:text-[40px] leading-tight w-[65%] lg:w-[60%]">
         Change is the only constant truth,{" "}

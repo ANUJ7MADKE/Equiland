@@ -1,14 +1,12 @@
-import React, { useLayoutEffect, useState } from 'react'
-import gsap from 'gsap'
-import Navbar from './components/Navbar'
-import HeroPage from './pages/HeroPage'
-import SaaSSection from './components/SaaSSection'
-import SlidingSquare from './components/SlidingSquare'
-import InsightsGrid from './components/InsightsSection'
-import MarketSection from './components/MarketSection'
-import ContactUsSection from './components/ContactUsSection'
-import Footer from './components/Footer'
-import OurJourneyPage from './pages/OurJourneyPage'
+import React, { useLayoutEffect, useState } from "react";
+import gsap from "gsap";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import OurJourneyPage from "./pages/OurJourneyPage";
+import LandingPage from "./pages/LandingPage";
+
 function App() {
   const [canScroll, setCanScroll] = useState(false);
 
@@ -30,16 +28,20 @@ function App() {
   }, []);
 
   return (
-    <div className='font-lexend text-text-brownish bg-secondary-cream'>
-      <Navbar canScroll={canScroll} setCanScroll={setCanScroll}/>
-      <HeroPage canScroll={canScroll} setCanScroll={setCanScroll} />
-      <SaaSSection/>
-      <InsightsGrid/>
-      <MarketSection/>
-      <OurJourneyPage />
-
-      <ContactUsSection/>
-      <Footer/>
+    <div className="font-lexend text-text-brownish bg-secondary-cream">
+      <BrowserRouter>
+        <Navbar canScroll={canScroll} setCanScroll={setCanScroll} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage canScroll={canScroll} setCanScroll={setCanScroll} />
+            }
+          />
+          <Route path="/our-journey" element={<OurJourneyPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

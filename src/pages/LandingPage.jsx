@@ -6,10 +6,10 @@ import MarketSection from "../components/MarketSection";
 import ContactUsSection from "../components/ContactUsSection";
 
 
-function LandingPage() {
+function LandingPage({ canScroll, setCanScroll }) {
   return (
     <div>
-      <HeroPage />
+      <HeroPage canScroll={canScroll} setCanScroll={setCanScroll} />
       <SaaSSection />
       <InsightsSection />
       <MarketSection />

@@ -2,7 +2,7 @@ import React from "react";
 
 function JourneyPassion() {
   return (
-    <div className="px-5 py-12 md:px-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24">
+    <div id="JourneyPassion" className="px-5 py-12 md:px-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24">
       <h2 className="text-lg lg:text-[40px] leading-tight  w-full order-2 lg:order-1 lg:col-span-2">
         Industry-agnostic insighting services{" "}
         <span className="text-primary-light">
