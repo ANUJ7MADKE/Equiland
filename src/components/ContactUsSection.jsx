@@ -14,7 +14,7 @@ function ContactUsSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
-    }, 1000); 
+    }, 1500); 
 
     return () => clearInterval(interval);
   }, []);
@@ -27,7 +27,7 @@ function ContactUsSection() {
           get in touch to explore <br /> collaboration opportunities
         </span>{" "}
         on a journey together on<br />  Your next{" "}
-        <span className="text-[#2ED89F]">{words[index]}</span> change
+        <span className="text-[#2ED89F] transition-all ease-in-out duration-300">{words[index]}</span> change
       </h2>
       <div className="mt-20 flex items-center justify-between gap-44">
         <form className="flex-1 flex flex-col gap-12">

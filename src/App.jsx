@@ -28,7 +28,7 @@ function App() {
   }, []);
 
   return (
-    <div className="font-lexend text-text-brownish bg-secondary-cream">
+    <div className="font-lexend text-text-brownish bg-secondary-cream ">
       <BrowserRouter>
         <Navbar canScroll={canScroll} setCanScroll={setCanScroll} />
         <Routes>

@@ -2,7 +2,10 @@ import React from "react";
 
 function JourneyPassion() {
   return (
-    <div id="JourneyPassion" className="px-5 py-12 md:px-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24">
+    <div
+      id="JourneyPassion"
+      className="px-5 py-12 md:px-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24"
+    >
       <h2 className="text-lg lg:text-[40px] leading-tight  w-full order-2 lg:order-1 lg:col-span-2">
         Industry-agnostic insighting services{" "}
         <span className="text-primary-light">
@@ -10,12 +13,23 @@ function JourneyPassion() {
         </span>{" "}
         to demystify macro trends
       </h2>
-      <div className="flex items-center justify-start lg:justify-center p-8   bg-contain bg-repeat order-1 relative">
-      <img src="/scopesearch3.gif" alt="" className="w-[50%] lg:w-[70%] absolute top-0 right-[50%] bottom-0 z-[10]" />
+      <div className="flex items-center justify-start lg:justify-center p-8   bg-contain bg-repeat order-1 relative min-h-[150px] md:min-h-[300px]">
+        <img
+          src="/scopesearch3.gif"
+          alt=""
+          className="w-[50%] lg:w-[70%] absolute top-0 right-[50%] bottom-0 z-[10]"
+        />
 
-        <img src="/dot-grid.svg" alt="" className="w-[50%] lg:w-[65%] absolute top-0 left-0 right-0 bottom-0" />
-        <img src="/dot-grid.svg" alt="" className="w-[50%] lg:w-[65%] absolute top-0 l right-0 bottom-0" />
-
+        <img
+          src="/dot-grid.svg"
+          alt=""
+          className="w-[50%] lg:w-[65%] absolute top-0 left-0 right-0 bottom-0"
+        />
+        <img
+          src="/dot-grid.svg"
+          alt=""
+          className="w-[50%] lg:w-[65%] absolute top-0 l right-0 bottom-0"
+        />
       </div>
       <div className="flex flex-col gap-5 font-poppins text-xs lg:text-lg order-3">
         <p className="">

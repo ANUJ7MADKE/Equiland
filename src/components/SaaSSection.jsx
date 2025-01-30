@@ -15,7 +15,7 @@ function SaaSSection() {
       { threshold: 0.1 } // Triggers when 10% of the element is visible
     );
 
-    const section = document.getElementById('SaasSection');
+    const section = document.getElementById("SaasSection");
     if (section) {
       observer.observe(section);
     }
@@ -27,18 +27,18 @@ function SaaSSection() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       if (section) {
         observer.unobserve(section);
       }
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [isVisible]); // Added isVisible to dependencies
 
   useEffect(() => {
-    if(hasScrolledDown){
+    if (hasScrolledDown) {
       gsap.fromTo(
         ".blue-text",
         {
@@ -62,15 +62,15 @@ function SaaSSection() {
       const timer = setTimeout(() => {
         setShowImage(true);
       }, 2000);
-  
+
       return () => clearTimeout(timer);
     }
   }, [hasScrolledDown]);
 
   useEffect(() => {
-    if(hasScrolledDown){
+    if (hasScrolledDown) {
       document.body.style.overflow = "hidden";
-      
+
       const timer = setTimeout(() => {
         document.body.style.overflow = "auto";
       }, 2000);
@@ -82,15 +82,20 @@ function SaaSSection() {
     }
   }, [hasScrolledDown]);
   return (
-    <div id="SaasSection" className="pt-32 pl-24 bg-primary-dark text-secondary-cream flex flex-col gap-14">
+    <div
+      id="SaasSection"
+      className="pt-32 pl-24 bg-primary-dark text-secondary-cream flex flex-col gap-14"
+    >
       <div className="flex gap-14 items-stretch">
         <img src="/logo-blue-square.svg" alt="Logo" />
 
-        <h2 className="text-[40px]  mr-24 leading-tight">
+        <h2 className="text-[40px] mr-24 leading-tight">
           One SaaS platform{" "}
-        {hasScrolledDown && <span className="text-primary-light blue-text">
-            streamlining the entire primary research funnel
-          </span>}
+          {hasScrolledDown && (
+            <span className="text-primary-light blue-text">
+              streamlining the entire primary research funnel
+            </span>
+          )}{" "}
           for transparency, quality, and agility to your marketing process
         </h2>
       </div>
@@ -108,22 +113,28 @@ function SaaSSection() {
               for 360° services – the choice is yours.
             </p>
           </div>
-          <button className="w-fit flex items-center gap-3 font-lexend ">
-            <div className={`cursor-pointer `}>
-              <h2 className="font-medium whitespace-nowrap">click to visit SaaS platform</h2>
-              <div className="h-[1px] bg-secondary-cream  w-full"></div>
-            </div>
-            <div className="bg-[#2ED89F] w-10 h-10 rounded-full flex items-center justify-center">
-              <FiArrowRight className="text-primary-dark text-xl" />
-            </div>
-          </button>
+          {hasScrolledDown && (
+            <button className="w-fit flex items-center gap-3 font-lexend blue-text">
+              <div className={`cursor-pointer `}>
+                <h2 className="font-medium whitespace-nowrap">
+                  Click to visit SaaS platform
+                </h2>
+                <div className="h-[1px] bg-secondary-cream  w-full"></div>
+              </div>
+              <div className="bg-[#2ED89F] w-10 h-10 rounded-full flex items-center justify-center">
+                <FiArrowRight className="text-primary-dark text-xl" />
+              </div>
+            </button>
+          )}
         </div>
         <div className="w-[60%] h-[657px]">
-        { hasScrolledDown && <img 
-            src={showImage ? "/saas-timeline.svg" : "/saasplat.gif"}
-            alt="SaaS platform demonstration" 
-            className="w-full h-full "
-          />}
+          {hasScrolledDown && (
+            <img
+              src={showImage ? "/saas-timeline.svg" : "/saasplat.gif"}
+              alt="SaaS platform demonstration"
+              className="w-full h-full "
+            />
+          )}
         </div>
       </div>
     </div>
