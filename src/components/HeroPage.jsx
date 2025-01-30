@@ -381,7 +381,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                     
                     </>
                   }
-                  rooted in <br /> classical principles  <br />
+                   <br />rooted in classical principles  <br />
                       <span className={`stage-text text-primary-light ${currentStage == "STAGE_1"?'opacity-100':'opacity-0'}`}>
                       consumer insights agency,
                       </span>
