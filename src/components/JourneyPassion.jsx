@@ -14,12 +14,12 @@ function JourneyPassion() {
         to demystify macro trends
       </h2>
       <div className="flex items-center justify-start lg:justify-center p-8   bg-contain bg-repeat order-1 relative min-h-[150px] md:min-h-[300px]">
+
         <img
           src="/scopesearch3.gif"
           alt=""
-          className="w-[50%] lg:w-[70%] absolute top-0 right-[50%] bottom-0 z-[10]"
+          className="w-[50%] lg:w-[70%] absolute top-0 left-[20%] bottom-0 z-[10]"
         />
-
         <img
           src="/dot-grid.svg"
           alt=""

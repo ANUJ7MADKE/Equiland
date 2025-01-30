@@ -160,13 +160,28 @@ function InsightsSection() {
       };
     }
   }, [hasScrolledDown]);
+
+  useEffect(() => {
+    if (hasScrolledDown) {
+      gsap.fromTo(
+        ".reveal-text",
+        { width: 0, opacity: 0 },
+        {
+          width: "auto",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power1.out",
+        }
+      );
+    }
+  }, [hasScrolledDown]);
   return (
     <div id="InsightsSection" className="min-h-screen w-full pt-32 pb-12 px-24">
       {/* Heading and Paragraph */}
       <div>
         <h2 className="text-[40px] leading-tight">
           Industry-agnostic insighting services{" "}
-       { hasScrolledDown&&  <span className="text-primary-light blue-text">
+       { hasScrolledDown&&  <span className="text-primary-light reveal-text">
             designed for B2C, B2B, and D2C organisations
           </span>}{" "}
           to demystify macro trends

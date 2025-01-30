@@ -81,6 +81,21 @@ function SaaSSection() {
       };
     }
   }, [hasScrolledDown]);
+
+  useEffect(() => {
+    if (hasScrolledDown) {
+      gsap.fromTo(
+        ".reveal-text",
+        { width: 0, opacity: 0 },
+        {
+          width: "auto",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power1.out",
+        }
+      );
+    }
+  }, [hasScrolledDown]);
   return (
     <div
       id="SaasSection"
@@ -92,7 +107,7 @@ function SaaSSection() {
         <h2 className="text-[40px] mr-24 leading-tight">
           One SaaS platform{" "}
           {hasScrolledDown && (
-            <span className="text-primary-light blue-text">
+            <span className="text-primary-light reveal-text">
               streamlining the entire primary research funnel
             </span>
           )}{" "}
@@ -127,12 +142,21 @@ function SaaSSection() {
             </button>
           )}
         </div>
-        <div className="w-[60%] h-[657px]">
+        {/* <div className="w-[60vw] h-[657px] ">
           {hasScrolledDown && (
             <img
               src={showImage ? "/saas-timeline.svg" : "/saasplat.gif"}
               alt="SaaS platform demonstration"
               className="w-full h-full "
+            />
+          )}
+        </div> */}
+        <div className="w-[60vw] h-[657px] relative overflow-hidden">
+          {hasScrolledDown && (
+            <img
+              src={showImage ? "/saas-timeline.svg" : "/saasplat.gif"}
+              alt="SaaS platform demonstration"
+              className="w-full h-full object-contain object-right"
             />
           )}
         </div>
