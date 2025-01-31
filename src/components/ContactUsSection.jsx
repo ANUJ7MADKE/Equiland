@@ -14,7 +14,7 @@ function ContactUsSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
-    }, 1500); 
+    }, 800); 
 
     return () => clearInterval(interval);
   }, []);

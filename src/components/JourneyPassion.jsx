@@ -7,49 +7,35 @@ function JourneyPassion() {
       className="px-5 py-12 md:px-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24"
     >
       <h2 className="text-lg lg:text-[40px] leading-tight  w-full order-2 lg:order-1 lg:col-span-2">
-        Industry-agnostic insighting services{" "}
+        Passionate about exploring human insights,{" "}
         <span className="text-primary-light">
-          designed for B2C, B2B, and D2C organisations
+          dispassionate about your business,
         </span>{" "}
-        to demystify macro trends
+        the founder’s equation for Equilibrium
       </h2>
-      <div className="flex items-center justify-start lg:justify-center p-8   bg-contain bg-repeat order-1 relative min-h-[150px] md:min-h-[300px]">
-
-        <img
-          src="/scopesearch3.gif"
-          alt=""
-          className="w-[50%] lg:w-[70%] absolute top-0 left-[20%] bottom-0 z-[10]"
-        />
-        <img
-          src="/dot-grid.svg"
-          alt=""
-          className="w-[50%] lg:w-[65%] absolute top-0 left-0 right-0 bottom-0"
-        />
-        <img
-          src="/dot-grid.svg"
-          alt=""
-          className="w-[50%] lg:w-[65%] absolute top-0 l right-0 bottom-0"
-        />
+      <div className=" overflow-hidden inset-0 bg-[url('/dot-grid-spacing.svg')] bg-contain bg-repeat  bg-secondary-cream flex items-center justify-center lg:justify-center    order-1 relative min-h-[150px] md:min-h-[300px]">
+        <img src="/scopesearch3.gif" alt="" className="w-[50%] lg:w-[70%]" />
       </div>
       <div className="flex flex-col gap-5 font-poppins text-xs lg:text-lg order-3">
         <p className="">
-          A journey that started in the discipline of qualitative research,
-          Ameya’s career traversed through leadership roles in advertising,
-          marketing, and research domains, earning accolades from clients as
-          well as international juries judging effectiveness case studies
+          A journey that began in the discipline of qualitative research,
+          Ameya’s career has spanned leadership roles across advertising,
+          marketing, and research, earning accolades from clients as well as
+          international juries evaluating effectiveness case studies
         </p>
         <p className="">
           Collaborating with clients across sectors such as BFSI, CPG, consumer
-          electronics, auto, media, and fashion & apparel, among others, what
-          remained unchanged in this journey was the passion for a ground-up
-          approach of understanding consumer preferences and psychology
+          electronics, automotive, media, and fashion & apparel, among others,
+          one constant throughout this journey has been a deep passion for a
+          ground-up approach to understanding consumer preferences and
+          psychology
         </p>
         <p className="">
-            Backed by this trifecta of consumer insights, brand strategy, and
-          marketing – seasoned with life-experiences gained through immersing in
-          various cultures across 5 continents – Ameya’s next change came in the
-          form of Equilibrium, created with a vision to democratize not only
-          research but also the marketing funnel
+          Backed by a trifecta of consumer insights, brand strategy, and
+          marketing—enriched by life experiences gained through immersion in
+          diverse cultures across five continents—Ameya’s next chapter took
+          shape with Equilibrium, founded with a vision to democratize not just
+          research but the entire marketing funnel
         </p>
       </div>
     </div>

@@ -32,11 +32,12 @@ function JourneyInfo() {
           <img src="/logo-blue-square.svg" className="aspect-square w-[20%]" alt="Logo" />
 
           <h2 className="text-sm md:text-lg lg:text-[40px] lg:leading-tight  xl:leading-tight">
-            One SaaS platform{" "}
+          One SaaS platform for{" "}
             <span className="text-primary-light">
-              streamlining the entire primary research funnel
+            transparent, high-quality and agile insights,
             </span>{" "}
-            adding transparency, quality, and agility to your marketing process
+            streamlining the entire primary research funnel
+
           </h2>
         </div>
       </div>

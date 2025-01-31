@@ -130,12 +130,12 @@ function JourneyHero() {
       {/* heading */}
       <h1 className="text-lg lg:text-[32px] xl:text-[40px] leading-tight w-[65%] lg:w-[60%] h-[20rem] first-text">
         Change is the only constant truth,{" "}
-        {hasScrolledDown && (
-          <span className="text-primary-light reveal-text">
+        
+          <span className={`text-primary-light transition-all duration-300 ${hasScrolledDown ? "opacity-100":"opacity-0"}`}>
             riding the wave of change is as complex for marketers as it is for
             consumers,
           </span>
-        )}{" "}
+      {" "}
         and a determined effort to conquer change led us to pursue Equilibrium
       </h1>
       {/* absolute svg */}

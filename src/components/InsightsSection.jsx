@@ -181,9 +181,9 @@ function InsightsSection() {
       <div>
         <h2 className="text-[40px] leading-tight">
           Industry-agnostic insighting services{" "}
-       { hasScrolledDown&&  <span className="text-primary-light reveal-text">
+      <span className={`text-primary-light  transition-all duration-300 ${hasScrolledDown ? "opacity-100" :"opacity-0"}`}>
             designed for B2C, B2B, and D2C organisations
-          </span>}{" "}
+          </span>{" "}
           to demystify macro trends
         </h2>
         <p className="font-poppins text-lg mt-5">

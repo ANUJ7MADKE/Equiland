@@ -106,11 +106,11 @@ function SaaSSection() {
 
         <h2 className="text-[40px] mr-24 leading-tight">
           One SaaS platform{" "}
-          {hasScrolledDown && (
-            <span className="text-primary-light reveal-text">
+          
+            <span className={`text-primary-light  transition-all duration-300 ${hasScrolledDown ? "opacity-100" :"opacity-0"}`}>
               streamlining the entire primary research funnel
             </span>
-          )}{" "}
+          {" "}
           for transparency, quality, and agility to your marketing process
         </h2>
       </div>

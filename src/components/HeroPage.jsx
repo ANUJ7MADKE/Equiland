@@ -300,7 +300,7 @@ function HeroPage({ canScroll, setCanScroll }) {
   };
 
   return (
-    <div className="py-20 font-lexend w-full h-full flex items-center justify-center ">
+    <div className="py-20 px-5 lg:px-24 font-lexend w-full h-full flex items-center justify-center ">
       {!canScroll && (
         <>
           <button
@@ -332,29 +332,22 @@ function HeroPage({ canScroll, setCanScroll }) {
         id="animation"
         className="flex flex-col gap-44 items-center justify-center w-full"
       >
-        <div className="flex items-center gap-40 w-full justify-center relative">
-          <div className="w-[500px] h-[350px] relative flex items-center justify-start">
+        <div className="grid grid-cols-2 xl:grid-cols-[30vw_1fr] gap-40 w-full justify-center">
+          <div className="flex items-center">
             {SCROLL_STAGES[currentStage].type === "image" ? (
               <img
                 src={SCROLL_STAGES[currentStage].src}
                 alt="101"
-                className="ml-[3rem] object-cover stage-3-image opacity-0"
-                style={{
-                  width: "500px",
-                  height: "150px",
-                }}
+                className=" object-contain stage-3-image opacity-0 w-full"
               />
             ) : (
               <video
                 ref={videoRef}
-                className="object-cover ml-[3rem]"
+                className="object-cover aspect-video w-full"
                 muted
                 playsInline
                 loop
-                style={{
-                  width: "500px",
-                  height: "350px",
-                }}
+                
               >
                 <source
                   src={SCROLL_STAGES[currentStage].videoSrc}
@@ -362,7 +355,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                 />
               </video>
             )}
-            <div className="absolute bottom-0 left-[3rem] w-full h-1 bg-secondary-cream"></div>
+            {/* <div className="absolute bottom-0 left-[3rem] w-full h-1 bg-secondary-cream"></div> */}
           </div>
           <div
             className={`flex flex-col gap-10 ${
@@ -371,68 +364,74 @@ function HeroPage({ canScroll, setCanScroll }) {
           >
             {(currentStage == "INITIAL" || currentStage == "STAGE_1") && (
               <>
-                <h1 className="text-[40px] leading-tight hero-animation">
+                <h1 className="text-[40px] leading-tight ease-in-out transition-all duration-100">
                   We are{" "}
                   {
                     <>
-                      <span className={`stage-text text-primary-light ${currentStage == "STAGE_1"?'opacity-100':'opacity-0'}`}>
-                        a tech powered full-{" "}
+                      <span
+                        className={` text-primary-light transition-all duration-500 ${
+                          currentStage == "STAGE_1"
+                            ? "opacity-100"
+                            : "opacity-0"
+                        }`}
+                      >
+                        a tech powered consumer insights agency{" "}
                       </span>
-                    
                     </>
                   }
-                   <br />rooted in classical principles  <br />
-                      <span className={`stage-text text-primary-light ${currentStage == "STAGE_1"?'opacity-100':'opacity-0'}`}>
-                      consumer insights agency,
-                      </span>
+                  rooted in classical principles
                 </h1>
-                {currentStage == "STAGE_1" && (
-                  <p className=" font-poppins text-lg hero-animation stage-text">
-                    Born from the heart to understand the mind, Equilibrium is a
-                    full service <br />
-                    agency, committed to providing clients with agile insights
-                    through our <br />
-                    proprietary AI-enhanced SaaS platform
-                  </p>
-                )}
+
+                <p
+                  className={` transition-all duration-500 ${
+                    currentStage == "STAGE_1" ? "opacity-100" : "opacity-0"
+                  } font-poppins text-lg `}
+                >
+                  Born from the heart to understand the mind, Equilibrium is a
+                  full service consumer insights agency, committed to providing
+                  clients with agile insights through our proprietary
+                  AI-enhanced SaaS platform
+                </p>
               </>
             )}
             {(currentStage == "STAGE_2" || currentStage == "STAGE_3") && (
               <>
-                <h1 className="text-[40px] leading-tight hero-animation">
-                  At the core of any business,
-                
+                <h1 className="text-[40px] leading-tight">
+                  At the core of any business{" "}
                   {
                     <>
-                      <span className={`stage-text2 text-primary-light ${currentStage == "STAGE_3"?'opacity-100':'opacity-0'}`}>
-                        insights are driven
+                      <span
+                        className={`transition-all duration-500 text-primary-light ${
+                          currentStage == "STAGE_3"
+                            ? "opacity-100"
+                            : "opacity-0"
+                        }`}
+                      >
+                        insights are driven by human conversations and emotions
                       </span>
-                     
-                    
-                      <br />
                     </>
-                  }
-                  Technology only augments your decision making                   <br />{" "}
-                      <span className={`stage-text2 text-primary-light ${currentStage == "STAGE_3"?'opacity-100':'opacity-0'}`}>
-                        {" "}
-                        By human conversations and immersions
-                        </span>
+                  }{" "}
+                  technology only augments
                 </h1>
-                {currentStage == "STAGE_3" && (
-                  <p className=" font-poppins text-lg hero-animation stage-text2">
+                
+                  <p className={`font-poppins text-lg transition-all duration-500 ${
+                    currentStage == "STAGE_3"
+                      ? "opacity-100"
+                      : "opacity-0"
+                  }`}>
                     Blending conversational and observational insights with
-                    other data- <br />
+                    other data- 
                     points can do wonders for your business. But collecting and
-                    processing <br />
+                    processing 
                     human insights can be resource intensive{" "}
                     <span className="text-primary-light ">
                       {" "}
                       and that's why to empower
-                      <br /> your decision-making process, we have two distinct
+                       your decision-making process, we have two distinct
                       offerings for you...
                     </span>
                   </p>
-                )}
+                
               </>
             )}
           </div>
