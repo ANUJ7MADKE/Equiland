@@ -93,24 +93,15 @@ function HeroPage({ canScroll, setCanScroll }) {
         newVideo.load();
         newVideo.play().then(() => {
           // Fade out current video
-          gsap.to(videoRef.current, {
-            opacity: 0,
-            duration: 0.5,
-            onComplete: () => {
-              // Switch to new video
-              videoRef.current.src = SCROLL_STAGES[newStage].videoSrc;
-              videoRef.current.load();
-              videoRef.current.play().then(() => {
-                // Set the time of new video to match previous video
-                videoRef.current.currentTime = currentTime;
-                // Fade in new video
-                gsap.to(videoRef.current, {
-                  opacity: 1,
-                  duration: 0.5,
-                });
-              });
-            },
+          videoRef.current.src = SCROLL_STAGES[newStage].videoSrc;
+          videoRef.current.load();
+          videoRef.current.play().then(() => {
+            // Set the time of new video to match previous video
+            videoRef.current.currentTime = currentTime;
+            // Fade in new video
+           
           });
+        
         });
       }
 
@@ -332,8 +323,8 @@ function HeroPage({ canScroll, setCanScroll }) {
         id="animation"
         className="flex flex-col gap-44 items-center justify-center w-full"
       >
-        <div className="grid grid-cols-2 xl:grid-cols-[30vw_1fr] gap-40 w-full justify-center">
-          <div className="flex items-center">
+        <div className="grid grid-cols-2 xl:grid-cols-[30vw_1fr] gap-40 w-full ">
+          <div className="flex items-center relative">
             {SCROLL_STAGES[currentStage].type === "image" ? (
               <img
                 src={SCROLL_STAGES[currentStage].src}
@@ -355,7 +346,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                 />
               </video>
             )}
-            {/* <div className="absolute bottom-0 left-[3rem] w-full h-1 bg-secondary-cream"></div> */}
+            <div className="absolute bottom-0 left-0 w-full h-3 bg-secondary-cream"></div>
           </div>
           <div
             className={`flex flex-col gap-10 ${
