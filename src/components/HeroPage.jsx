@@ -99,9 +99,7 @@ function HeroPage({ canScroll, setCanScroll }) {
             // Set the time of new video to match previous video
             videoRef.current.currentTime = currentTime;
             // Fade in new video
-           
           });
-        
         });
       }
 
@@ -290,6 +288,7 @@ function HeroPage({ canScroll, setCanScroll }) {
     }
   };
 
+
   return (
     <div className="py-20 px-5 lg:px-24 font-lexend w-full h-full flex items-center justify-center ">
       {!canScroll && (
@@ -338,7 +337,6 @@ function HeroPage({ canScroll, setCanScroll }) {
                 muted
                 playsInline
                 loop
-                
               >
                 <source
                   src={SCROLL_STAGES[currentStage].videoSrc}
@@ -355,23 +353,33 @@ function HeroPage({ canScroll, setCanScroll }) {
           >
             {(currentStage == "INITIAL" || currentStage == "STAGE_1") && (
               <>
-                <h1 className="text-[40px] leading-tight ease-in-out transition-all duration-100">
-                  We are{" "}
-                  {
-                    <>
-                      <span
-                        className={` text-primary-light transition-all duration-500 ${
-                          currentStage == "STAGE_1"
-                            ? "opacity-100"
-                            : "opacity-0"
-                        }`}
-                      >
-                        a tech powered consumer insights agency{" "}
-                      </span>
-                    </>
-                  }
-                  rooted in classical principles
-                </h1>
+              
+                <h1 className="text-[40px] leading-tight ease-in-out transition-all duration-500">
+                  <span
+                    className={`${
+                      currentStage === "INITIAL" ? "block" : "inline-block"
+                    }`}
+                  >
+                    We are
+                  </span>{" "}
+                  <span
+                    className={`text-primary-light transition-opacity duration-500 ${
+                      currentStage === "STAGE_1"
+                        ? "opacity-100 "
+                        : "opacity-0 absolute"
+                    }`}
+                  >
+                    a tech powered consumer insights agency
+                  </span>{" "}
+                  <span
+                    className={`slide-text transition-all duration-1000 ${
+                      currentStage === "STAGE_1" ? "inline-block translate-x-0" : "block "
+                    }`}
+                  >
+                    rooted in
+                  </span>{" "}
+                  <span className="block">classical principles</span>
+                </h1> 
 
                 <p
                   className={` transition-all duration-500 ${
@@ -387,42 +395,51 @@ function HeroPage({ canScroll, setCanScroll }) {
             )}
             {(currentStage == "STAGE_2" || currentStage == "STAGE_3") && (
               <>
-                <h1 className="text-[40px] leading-tight">
-                  At the core of any business{" "}
-                  {
-                    <>
-                      <span
-                        className={`transition-all duration-500 text-primary-light ${
-                          currentStage == "STAGE_3"
-                            ? "opacity-100"
-                            : "opacity-0"
-                        }`}
-                      >
-                        insights are driven by human conversations and emotions
-                      </span>
-                    </>
-                  }{" "}
-                  technology only augments
+               
+                <h1 className="text-[40px] leading-tight ease-in-out transition-all duration-500">
+                  <span
+                    className={`${
+                      currentStage === "STAGE_2" ? "block" : "inline-block"
+                    }`}
+                  >
+                    At the core of any business
+                  </span>{" "}
+                  <span
+                    className={`text-primary-light transition-opacity duration-500 ${
+                      currentStage === "STAGE_3"
+                        ? "opacity-100 "
+                        : "opacity-0 absolute"
+                    }`}
+                  >
+                    insights are driven by human conversations and emotions
+                  </span>{" "}
+                  <span
+                    className={`transition-all duration-700 ${
+                      currentStage === "STAGE_3" ? "inline-block ml-2" : "block"
+                    }`}
+                  >
+                    technology only 
+                  </span>{" "}
+                  <span className={`${
+                      currentStage === "STAGE_2" ? "block" : "inline-block"
+                    }`}>augments</span>
+                  
                 </h1>
-                
-                  <p className={`font-poppins text-lg transition-all duration-500 ${
-                    currentStage == "STAGE_3"
-                      ? "opacity-100"
-                      : "opacity-0"
-                  }`}>
-                    Blending conversational and observational insights with
-                    other data- 
-                    points can do wonders for your business. But collecting and
-                    processing 
-                    human insights can be resource intensive{" "}
-                    <span className="text-primary-light ">
-                      {" "}
-                      and that's why to empower
-                       your decision-making process, we have two distinct
-                      offerings for you...
-                    </span>
-                  </p>
-                
+
+                <p
+                  className={`font-poppins text-lg transition-all duration-500 ${
+                    currentStage == "STAGE_3" ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  Blending conversational and observational insights with other
+                  data- points can do wonders for your business. But collecting
+                  and processing human insights can be resource intensive{" "}
+                  <span className="text-primary-light ">
+                    {" "}
+                    and that's why to empower your decision-making process, we
+                    have two distinct offerings for you...
+                  </span>
+                </p>
               </>
             )}
           </div>
