@@ -28,7 +28,10 @@ function HeroPage({ canScroll, setCanScroll }) {
   const [showLogo, setShowLogo] = useState(false);
   const [currentStage, setCurrentStage] = useState("INITIAL");
   const [canProgress, setCanProgress] = useState(false);
+  const [isAbsolute, setIsAbsolute] = useState(true);
+  const [insightsWidth, setInsightsWidth] = useState(0);
   const videoRef = useRef(null);
+  const insightsAgencyRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -281,6 +284,28 @@ function HeroPage({ canScroll, setCanScroll }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [currentStage]);
 
+  // Add new useEffect for handling absolute class
+  useEffect(() => {
+    if (currentStage !== "INITIAL") {
+      const timer = setTimeout(() => {
+        setIsAbsolute(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setIsAbsolute(true);
+    }
+  }, [currentStage]);
+
+  // Update useEffect to use setState
+  useEffect(() => {
+    if (insightsAgencyRef.current) {
+      const width = insightsAgencyRef.current.offsetWidth;
+      // Add a small buffer (e.g., 8px) to account for the gap
+      const buffer = 8;
+      setInsightsWidth(width + buffer);
+    }
+  }, [currentStage]); // Re-run when stage changes
+
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -353,34 +378,55 @@ function HeroPage({ canScroll, setCanScroll }) {
           >
             {(currentStage == "INITIAL" || currentStage == "STAGE_1") && (
               <>
-              
-                <h1 className="text-[40px] leading-tight ease-in-out transition-all duration-500">
-                  <span
+                <div className="flex flex-col text-[40px] leading-tight ease-in-out transition-all duration-500">
+                  <div className="flex flex-row relative gap-2">
+                  <div
                     className={`${
                       currentStage === "INITIAL" ? "block" : "inline-block"
-                    }`}
+                    } whitespace-nowrap`}
                   >
                     We are
-                  </span>{" "}
-                  <span
+                  </div>
+                  <div
                     className={`text-primary-light transition-opacity duration-500 ${
                       currentStage === "STAGE_1"
                         ? "opacity-100 "
                         : "opacity-0 absolute"
-                    }`}
+                    } whitespace-nowrap`}
                   >
-                    a tech powered consumer insights agency
-                  </span>{" "}
-                  <span
-                    className={`slide-text transition-all duration-1000 ${
-                      currentStage === "STAGE_1" ? "inline-block translate-x-0" : "block "
-                    }`}
+                    a tech powered consumer
+                  </div>{" "}
+                  </div>
+                  <div className="flex flex-row relative gap-2">
+                  <div ref={insightsAgencyRef}
+                    className={`text-primary-light transition-opacity duration-500 ${
+                      currentStage === "STAGE_1"
+                        ? "opacity-100 "
+                        : "opacity-0 "
+                    } whitespace-nowrap`}
                   >
-                    rooted in
-                  </span>{" "}
-                  <span className="block">classical principles</span>
-                </h1> 
+                     insights agency
+                  </div>
+                 {console.log(insightsWidth)} <div
+                    className={`transition-all duration-500 whitespace-nowrap ${
+                      isAbsolute ? 'absolute' : ''
+                    } ${
+                      currentStage === "INITIAL" 
+                        ? "block left-0" 
+                        : "inline-block"
+                    }`}
+                    style={{ 
+                      left: currentStage === "INITIAL" ? 0 : `${insightsWidth}px` 
+                    }}
+                  >
+                   {"  rooted in"}
+                  </div>
+                  </div>
+                  <div className="flex flex-row relative">       
+                            <span className="block whitespace-nowrap">classical principles</span>
+                  </div>
 
+                </div>
                 <p
                   className={` transition-all duration-500 ${
                     currentStage == "STAGE_1" ? "opacity-100" : "opacity-0"
