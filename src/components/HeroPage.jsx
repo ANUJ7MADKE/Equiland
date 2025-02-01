@@ -30,8 +30,10 @@ function HeroPage({ canScroll, setCanScroll }) {
   const [canProgress, setCanProgress] = useState(false);
   const [isAbsolute, setIsAbsolute] = useState(true);
   const [insightsWidth, setInsightsWidth] = useState(0);
+  const [emotionsWidth, setEmotionsWidth] = useState(0);
   const videoRef = useRef(null);
   const insightsAgencyRef = useRef(null);
+  const emotionsRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -306,13 +308,21 @@ function HeroPage({ canScroll, setCanScroll }) {
     }
   }, [currentStage]); // Re-run when stage changes
 
+  useEffect(() => {
+    if (emotionsRef.current) {
+      const width = emotionsRef.current.offsetWidth;
+      // Add a small buffer (e.g., 8px) to account for the gap
+      const buffer = 8;
+      setEmotionsWidth(width + buffer);
+    }
+  }, [currentStage]); // Re-run when stage changes
+
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
-
 
   return (
     <div className="py-20 px-5 lg:px-24 font-lexend w-full h-full flex items-center justify-center ">
@@ -380,52 +390,55 @@ function HeroPage({ canScroll, setCanScroll }) {
               <>
                 <div className="flex flex-col text-[40px] leading-tight ease-in-out transition-all duration-500">
                   <div className="flex flex-row relative gap-2">
-                  <div
-                    className={`${
-                      currentStage === "INITIAL" ? "block" : "inline-block"
-                    } whitespace-nowrap`}
-                  >
-                    We are
-                  </div>
-                  <div
-                    className={`text-primary-light transition-opacity duration-500 ${
-                      currentStage === "STAGE_1"
-                        ? "opacity-100 "
-                        : "opacity-0 absolute"
-                    } whitespace-nowrap`}
-                  >
-                    a tech powered consumer
-                  </div>{" "}
+                    <div
+                      className={`${
+                        currentStage === "INITIAL" ? "block" : "inline-block"
+                      } whitespace-nowrap`}
+                    >
+                      We are
+                    </div>
+                    <div
+                      className={`text-primary-light transition-opacity duration-500 ${
+                        currentStage === "STAGE_1"
+                          ? "opacity-100 "
+                          : "opacity-0 absolute"
+                      } whitespace-nowrap`}
+                    >
+                      a tech powered consumer
+                    </div>{" "}
                   </div>
                   <div className="flex flex-row relative gap-2">
-                  <div ref={insightsAgencyRef}
-                    className={`text-primary-light transition-opacity duration-500 ${
-                      currentStage === "STAGE_1"
-                        ? "opacity-100 "
-                        : "opacity-0 "
-                    } whitespace-nowrap`}
-                  >
-                     insights agency
+                    <div
+                      ref={insightsAgencyRef}
+                      className={`text-primary-light transition-opacity duration-500 ${
+                        currentStage === "STAGE_1"
+                          ? "opacity-100 "
+                          : "opacity-0 "
+                      } whitespace-nowrap`}
+                    >
+                      insights agency
+                    </div>
+                    <div
+                      className={`transition-all duration-500 whitespace-nowrap ${
+                        isAbsolute ? "absolute" : ""
+                      } ${
+                        currentStage === "INITIAL"
+                          ? "block left-0"
+                          : "inline-block"
+                      }`}
+                      style={{
+                        left:
+                          currentStage === "INITIAL" ? 0 : `${insightsWidth}px`,
+                      }}
+                    >
+                      {"  rooted in"}
+                    </div>
                   </div>
-                 {console.log(insightsWidth)} <div
-                    className={`transition-all duration-500 whitespace-nowrap ${
-                      isAbsolute ? 'absolute' : ''
-                    } ${
-                      currentStage === "INITIAL" 
-                        ? "block left-0" 
-                        : "inline-block"
-                    }`}
-                    style={{ 
-                      left: currentStage === "INITIAL" ? 0 : `${insightsWidth}px` 
-                    }}
-                  >
-                   {"  rooted in"}
+                  <div className="flex flex-row relative">
+                    <span className="block whitespace-nowrap">
+                      classical principles
+                    </span>
                   </div>
-                  </div>
-                  <div className="flex flex-row relative">       
-                            <span className="block whitespace-nowrap">classical principles</span>
-                  </div>
-
                 </div>
                 <p
                   className={` transition-all duration-500 ${
@@ -441,36 +454,67 @@ function HeroPage({ canScroll, setCanScroll }) {
             )}
             {(currentStage == "STAGE_2" || currentStage == "STAGE_3") && (
               <>
-               
-                <h1 className="text-[40px] leading-tight ease-in-out transition-all duration-500">
-                  <span
-                    className={`${
-                      currentStage === "STAGE_2" ? "block" : "inline-block"
-                    }`}
-                  >
-                    At the core of any business
-                  </span>{" "}
-                  <span
-                    className={`text-primary-light transition-opacity duration-500 ${
-                      currentStage === "STAGE_3"
-                        ? "opacity-100 "
-                        : "opacity-0 absolute"
-                    }`}
-                  >
-                    insights are driven by human conversations and emotions
-                  </span>{" "}
-                  <span
-                    className={`transition-all duration-700 ${
-                      currentStage === "STAGE_3" ? "inline-block ml-2" : "block"
-                    }`}
-                  >
-                    technology only 
-                  </span>{" "}
-                  <span className={`${
-                      currentStage === "STAGE_2" ? "block" : "inline-block"
-                    }`}>augments</span>
-                  
-                </h1>
+                <div className="flex flex-col text-[40px] leading-tight ease-in-out transition-all duration-500">
+                  <div className="flex flex-row relative gap-2">
+                    <div
+                      className={`${
+                        currentStage === "STAGE_2" ? "block" : "inline-block"
+                      } whitespace-nowrap`}
+                    >
+                      At the core of any business
+                    </div>
+                    <div
+                      className={`text-primary-light transition-opacity duration-500 ${
+                        currentStage === "STAGE_3"
+                          ? "opacity-100 "
+                          : "opacity-0 absolute"
+                      } whitespace-nowrap`}
+                    >
+                      insights
+                    </div>{" "}
+                  </div>
+                  <div className="flex flex-row relative gap-2">
+                    <div
+                      className={`text-primary-light transition-opacity duration-500 ${
+                        currentStage === "STAGE_3"
+                          ? "opacity-100 "
+                          : "opacity-0 absolute"
+                      } whitespace-nowrap`}
+                    >
+                      are driven by human conversations
+                    </div>{" "}
+                  </div>
+                  <div className="flex flex-row relative">
+                    <div
+                      ref={insightsAgencyRef}
+                      className={`text-primary-light transition-opacity duration-500 ${
+                        currentStage === "STAGE_3"
+                          ? "opacity-100 "
+                          : "opacity-0 "
+                      } whitespace-nowrap`}
+                    >
+                      and emotions
+                    </div>
+                    <div
+                      className={`transition-all duration-500 whitespace-nowrap ${
+                        isAbsolute ? "absolute" : "absolute"
+                      } ${
+                        currentStage === "STAGE_2"
+                          ? "block left-0"
+                          : "inline-block"
+                      }`}
+                      style={{
+                        left:
+                          currentStage === "STAGE_2" ? 0 : `${insightsWidth}px`,
+                      }}
+                    >
+                      technology only
+                    </div>
+                  </div>
+                  <div className="flex flex-row relative">
+                    <span className="block whitespace-nowrap">augments</span>
+                  </div>
+                </div>
 
                 <p
                   className={`font-poppins text-lg transition-all duration-500 ${
