@@ -96,7 +96,7 @@ function SaaSSection() {
       );
     }
   }, [hasScrolledDown]);
-  const bluref= useRef(null)
+  const blueRef= useRef(null)
   return (
     <div
       id="SaasSection"
@@ -105,17 +105,27 @@ function SaaSSection() {
       <div className="flex gap-14 items-stretch">
         <img src="/logo-blue-square.svg" alt="Logo" />
 
-        <h2 className="text-[40px] mr-24 leading-tight relative
-        ">
+        <div className="text-[40px] mr-24 leading-tight relative flex flex-col">
+          <div className="flex flex-row">
+          <div>
           One SaaS platform{" "}
-        <span ref={bluref} className={`text-primary-light transition-all duration-400 absolute ${hasScrolledDown ? "  opacity-100" : " opacity-0 "}`}>
-            streamlining the entire primary research funnel
-          </span>
-          {" "}
-          <span style={{marginLeft:hasScrolledDown&& bluref.current?.offsetWidth+20}} className={`transition-all duration-300 `}>
-            for transparency, quality, and agility to your marketing process
-          </span>
-        </h2>
+        </div>
+        <div className={`text-primary-light transition-all duration-400  ${hasScrolledDown ? "  opacity-100" : " opacity-0 "}`}>
+            streamlining the entire primary research 
+          </div>
+        </div>
+        <div className="flex flex-row">
+          <div ref={blueRef} className={`text-primary-light transition-all duration-400 absolute ${hasScrolledDown ? "  opacity-100" : " opacity-0 "}`}>
+          funnel
+        </div>
+        <div style={{marginLeft: hasScrolledDown&& blueRef.current?.offsetWidth+10}} className={`transition-all duration-300 `}>
+            for transparency, quality, and agility 
+          </div>
+        </div>
+
+         
+          <div>to your marketing process</div>
+        </div>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-16 w-[30%] font-poppins text-lg ">
