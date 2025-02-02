@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState ,useEffect, useRef} from "react";
 import SlidingSquare from "./SlidingSquare";
 import gsap from "gsap";
 
@@ -175,16 +175,18 @@ function InsightsSection() {
       );
     }
   }, [hasScrolledDown]);
+  const blueRef= useRef(null)
   return (
     <div id="InsightsSection" className="min-h-screen w-full pt-32 pb-12 px-24">
       {/* Heading and Paragraph */}
-      <div>
+      <div className="relative">
         <h2 className="text-[40px] leading-tight">
-          Industry-agnostic insighting services{" "}
-      <span className={`text-primary-light  transition-all duration-300 ${hasScrolledDown ? "opacity-100" :"opacity-0"}`}>
+          Industry-agnostic insighting services
+      <span ref={blueRef} className={`text-primary-light  transition-all duration-300 absolute ${hasScrolledDown ? "opacity-100" :"opacity-0"}`}>
             designed for B2C, B2B, and D2C organisations
           </span>{" "}
-          to demystify macro trends
+          <span style={{marginLeft: hasScrolledDown&& blueRef.current?.offsetWidth+20}} className={`transition-all duration-500  `}>
+          to demystify macro trends</span>
         </h2>
         <p className="font-poppins text-lg mt-5">
           Rooted in classical business and research principles, we design every

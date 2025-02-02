@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import gsap from "gsap";
 
@@ -96,6 +96,7 @@ function SaaSSection() {
       );
     }
   }, [hasScrolledDown]);
+  const bluref= useRef(null)
   return (
     <div
       id="SaasSection"
@@ -104,14 +105,16 @@ function SaaSSection() {
       <div className="flex gap-14 items-stretch">
         <img src="/logo-blue-square.svg" alt="Logo" />
 
-        <h2 className="text-[40px] mr-24 leading-tight">
+        <h2 className="text-[40px] mr-24 leading-tight relative
+        ">
           One SaaS platform{" "}
-          
-            <span className={`text-primary-light  transition-all duration-300 ${hasScrolledDown ? "opacity-100" :"opacity-0"}`}>
-              streamlining the entire primary research funnel
-            </span>
+        <span ref={bluref} className={`text-primary-light transition-all duration-400 absolute ${hasScrolledDown ? "  opacity-100" : " opacity-0 "}`}>
+            streamlining the entire primary research funnel
+          </span>
           {" "}
-          for transparency, quality, and agility to your marketing process
+          <span style={{marginLeft:hasScrolledDown&& bluref.current?.offsetWidth+20}} className={`transition-all duration-300 `}>
+            for transparency, quality, and agility to your marketing process
+          </span>
         </h2>
       </div>
       <div className="flex items-center justify-between">

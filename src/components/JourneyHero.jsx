@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 function JourneyHero() {
   const [showImage, setShowImage] = useState(false);
@@ -122,22 +122,41 @@ function JourneyHero() {
       };
     }
   }, [hasScrolledDown]);
+  const blueRef= useRef(null)
   return (
     <div
       id="JourneyHero"
       className="py-12 lg:py-28 px-5 lg:px-24 relative overflow-hidden"
     >
       {/* heading */}
-      <h1 className="text-lg lg:text-[32px] xl:text-[40px] leading-tight w-[65%] lg:w-[60%] h-[20rem] first-text">
-        Change is the only constant truth,{" "}
-        
-          <span className={`text-primary-light transition-all duration-300 ${hasScrolledDown ? "opacity-100":"opacity-0"}`}>
-            riding the wave of change is as complex for marketers as it is for
-            consumers,
-          </span>
+      <div className="text-lg lg:text-[32px] xl:text-[40px] leading-tight w-[65%] lg:w-[60%] h-[20rem] first-text relative flex flex-col">
+        <div className="flex flex-row">
+          <div>
+        Change is the only constant truth,</div>
+        <div className={`text-primary-light transition-all duration-300 ${hasScrolledDown ? "opacity-100":"opacity-0"}`}>
+            riding the 
+          </div>
+        </div>
+       {hasScrolledDown && <div className="flex flex-row">
+          
+        <div className={`text-primary-light transition-all duration-300 ${hasScrolledDown ? "opacity-100":"opacity-0"}`}>
+        wave of change is as complex for marketers 
+        </div>
+        </div>}
+        <div className="flex flex-row relative">
+
+          <div ref={blueRef} className={`text-primary-light transition-all duration-500 absolute ${hasScrolledDown ? "opacity-100":"opacity-0"}`}>
+          as it is for consumers,
+          </div>
       {" "}
-        and a determined effort to conquer change led us to pursue Equilibrium
-      </h1>
+      <div style={{marginLeft: hasScrolledDown&& blueRef.current?.offsetWidth+10}} className={`w-full transition-all duration-500`}>
+      and a determined effort 
+
+      </div></div>
+      <div className={` transition-all duration-500 w-full whitespace-nowrap`}>
+      to conquer change led us to pursue Equilibrium
+          </div>
+      </div>
       {/* absolute svg */}
       <div className="absolute left-0 right-0 top-48 md:top-8 lg:top-64 xl:top-[20vh] w-full h-[100vh] z-[10]">
         {hasScrolledDown && (
