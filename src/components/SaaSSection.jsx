@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import gsap from "gsap";
 
@@ -120,6 +121,7 @@ function SaaSSection() {
       );
     }
   }, [hasScrolledDown]);
+  const blueRef= useRef(null)
   return (
     <div
       id="SaasSection"

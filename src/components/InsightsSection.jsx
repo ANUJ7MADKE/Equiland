@@ -199,6 +199,7 @@ function InsightsSection() {
       );
     }
   }, [hasScrolledDown]);
+  const blueRef= useRef(null)
   return (
     <div id="InsightsSection" className="min-h-screen w-full pt-32 pb-12 px-24">
       {/* Heading and Paragraph */}
