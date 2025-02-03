@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import React, { useState, useEffect, useRef } from "react";
+
 import gsap from "gsap";
 function JourneyHero() {
   const [showImage, setShowImage] = useState(false);
