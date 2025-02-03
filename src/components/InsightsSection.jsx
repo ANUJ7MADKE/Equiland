@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SlidingSquare from "./SlidingSquare";
 import gsap from "gsap";
 
@@ -87,6 +87,30 @@ function InsightsSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasScrolledDown, setHasScrolledDown] = useState(false);
 
+  const [insightsWidth, setInsightsWidth] = useState(0);
+  const insightsAgencyRef = useRef(null);
+  const [isAbsolute, setIsAbsolute] = useState(true);
+
+  useEffect(() => {
+    if (insightsAgencyRef.current) {
+      const width = insightsAgencyRef.current.offsetWidth;
+      // Add a small buffer (e.g., 8px) to account for the gap
+      const buffer = 8;
+      setInsightsWidth(width + buffer);
+    }
+  }, [hasScrolledDown]); // Re-run when stage changes
+
+  useEffect(() => {
+    if (hasScrolledDown) {
+      const timer = setTimeout(() => {
+        setIsAbsolute(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setIsAbsolute(true);
+    }
+  }, [hasScrolledDown]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -95,7 +119,7 @@ function InsightsSection() {
       { threshold: 0.1 } // Triggers when 10% of the element is visible
     );
 
-    const section = document.getElementById('InsightsSection');
+    const section = document.getElementById("InsightsSection");
     if (section) {
       observer.observe(section);
     }
@@ -107,18 +131,18 @@ function InsightsSection() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       if (section) {
         observer.unobserve(section);
       }
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [isVisible]); // Added isVisible to dependencies
 
   useEffect(() => {
-    if(hasScrolledDown){
+    if (hasScrolledDown) {
       gsap.fromTo(
         ".blue-text",
         {
@@ -142,14 +166,14 @@ function InsightsSection() {
       const timer = setTimeout(() => {
         setShowImage(true);
       }, 2000);
-  
+
       return () => clearTimeout(timer);
     }
   }, [hasScrolledDown]);
   useEffect(() => {
-    if(hasScrolledDown){
+    if (hasScrolledDown) {
       document.body.style.overflow = "hidden";
-      
+
       const timer = setTimeout(() => {
         document.body.style.overflow = "auto";
       }, 2000);
@@ -179,13 +203,40 @@ function InsightsSection() {
     <div id="InsightsSection" className="min-h-screen w-full pt-32 pb-12 px-24">
       {/* Heading and Paragraph */}
       <div>
-        <h2 className="text-[40px] leading-tight">
-          Industry-agnostic insighting services{" "}
-      <span className={`text-primary-light  transition-all duration-300 ${hasScrolledDown ? "opacity-100" :"opacity-0"}`}>
-            designed for B2C, B2B, and D2C organisations
-          </span>{" "}
-          to demystify macro trends
-        </h2>
+        <div className="flex flex-col text-[40px] leading-tight ease-in-out transition-all duration-500">
+          <div className="flex flex-row relative gap-2">
+            <div className={`whitespace-nowrap`}>
+              Industry-agnostic insighting services
+            </div>
+            <div
+              className={`text-primary-light transition-opacity duration-500 ${
+                hasScrolledDown ? "opacity-100 " : "opacity-0 absolute"
+              } whitespace-nowrap`}
+            >
+              designed for B2C, B2B, and
+            </div>{" "}
+          </div>
+          <div className="flex flex-row relative gap-2">
+            <div
+              ref={insightsAgencyRef}
+              className={`text-primary-light transition-opacity duration-500 ${
+                hasScrolledDown ? "opacity-100 " : "opacity-0 "
+              } whitespace-nowrap`}
+            >
+              D2C organisations
+            </div>
+            <div
+              className={`transition-all duration-500 whitespace-nowrap ${
+                isAbsolute ? "absolute" : ""
+              } ${!hasScrolledDown ? "block left-0" : "inline-block"}`}
+              style={{
+                left: !hasScrolledDown ? 0 : `${insightsWidth}px`,
+              }}
+            >
+              to demystify macro trends
+            </div>
+          </div>
+        </div>
         <p className="font-poppins text-lg mt-5">
           Rooted in classical business and research principles, we design every
           project with a blend of methodologies, but customize the approach to

@@ -1,9 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 function JourneyHero() {
   const [showImage, setShowImage] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [hasScrolledDown, setHasScrolledDown] = useState(false);
+
+  const [insightsWidth, setInsightsWidth] = useState(0);
+  const insightsAgencyRef = useRef(null);
+  const [isAbsolute, setIsAbsolute] = useState(true);
+
+  useEffect(() => {
+    if (insightsAgencyRef.current) {
+      const width = insightsAgencyRef.current.offsetWidth;
+      // Add a small buffer (e.g., 8px) to account for the gap
+      const buffer = 8;
+      setInsightsWidth(width + buffer);
+    }
+  }, [hasScrolledDown]); // Re-run when stage changes
+
+  useEffect(() => {
+    if (hasScrolledDown) {
+      const timer = setTimeout(() => {
+        setIsAbsolute(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setIsAbsolute(true);
+    }
+  }, [hasScrolledDown]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -128,16 +152,61 @@ function JourneyHero() {
       className="py-12 lg:py-28 px-5 lg:px-24 relative overflow-hidden"
     >
       {/* heading */}
-      <h1 className="text-lg lg:text-[32px] xl:text-[40px] leading-tight w-[65%] lg:w-[60%] h-[20rem] first-text">
-        Change is the only constant truth,{" "}
-        
-          <span className={`text-primary-light transition-all duration-300 ${hasScrolledDown ? "opacity-100":"opacity-0"}`}>
-            riding the wave of change is as complex for marketers as it is for
-            consumers,
+
+      <div className="flex flex-col text-lg lg:text-[32px] xl:text-[40px] leading-tight ease-in-out transition-all duration-500">
+        <div className="flex flex-row relative gap-2">
+          <div className={`whitespace-nowrap`}>
+            Change is the only constant truth,
+          </div>
+          <div
+            className={`text-primary-light transition-opacity duration-500 ${
+              hasScrolledDown ? "opacity-100 " : "opacity-0 absolute"
+            } whitespace-nowrap`}
+          >
+            riding
+          </div>{" "}
+        </div>
+        <div className="flex flex-row relative gap-2">
+          <div
+            ref={insightsAgencyRef}
+            className={`text-primary-light transition-opacity duration-500 ${
+              hasScrolledDown ? "opacity-100 " : "opacity-0 absolute"
+            } whitespace-nowrap`}
+          >
+            the wave of change is as complex for
+          </div>
+        </div>
+        <div className="flex flex-row relative gap-2">
+          <div
+            ref={insightsAgencyRef}
+            className={`text-primary-light transition-opacity duration-500 ${
+              hasScrolledDown ? "opacity-100 " : "opacity-0 "
+            } whitespace-nowrap`}
+          >
+            marketers as it is for consumers,
+          </div>
+          <div
+            className={`transition-all duration-500 whitespace-nowrap ${
+              isAbsolute ? "absolute" : ""
+            } ${!hasScrolledDown ? "block left-0" : "inline-block"}`}
+            style={{
+              left: !hasScrolledDown ? 0 : `${insightsWidth}px`,
+            }}
+          >
+            and a
+          </div>
+        </div>
+        <div className="flex flex-row relative gap-2">
+          <div className={`whitespace-nowrap`}>
+            determined effort to conquer change led
+          </div>
+        </div>
+        <div className="flex flex-row relative">
+          <span className="block whitespace-nowrap">
+          us to pursue Equilibrium
           </span>
-      {" "}
-        and a determined effort to conquer change led us to pursue Equilibrium
-      </h1>
+        </div>
+      </div>
       {/* absolute svg */}
       <div className="absolute left-0 right-0 top-48 md:top-8 lg:top-64 xl:top-[20vh] w-full h-[100vh] z-[10]">
         {hasScrolledDown && (

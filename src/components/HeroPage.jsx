@@ -508,11 +508,13 @@ function HeroPage({ canScroll, setCanScroll }) {
                           currentStage === "STAGE_2" ? 0 : `${insightsWidth}px`,
                       }}
                     >
-                      technology only
+                      technology can
                     </div>
                   </div>
                   <div className="flex flex-row relative">
-                    <span className="block whitespace-nowrap">augments</span>
+                    <span className="block whitespace-nowrap">
+                      only augment decision-making{" "}
+                    </span>
                   </div>
                 </div>
 
@@ -523,11 +525,12 @@ function HeroPage({ canScroll, setCanScroll }) {
                 >
                   Blending conversational and observational insights with other
                   data- points can do wonders for your business. But collecting
-                  and processing human insights can be resource intensive{" "}
+                  and processing human insights collected through primary
+                  research can be resource intensive, and that's why{" "}
                   <span className="text-primary-light ">
                     {" "}
-                    and that's why to empower your decision-making process, we
-                    have two distinct offerings for you...
+                    to empower your decision-making process, we have two
+                    distinct offerings for you...
                   </span>
                 </p>
               </>

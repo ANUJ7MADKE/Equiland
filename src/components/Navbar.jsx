@@ -27,19 +27,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 const navLinks = [
   {
-    label: "Our Services",
-    page: "/",
-    section: "SaasSection",
-  },
-  {
     label: "Our Journey",
     page: "/our-journey",
     section: "",
   },
   {
-    label: "Our Product",
+    label: "Our Services",
     page: "/",
     section: "InsightsSection",
+  },
+  {
+    label: "Our Product",
+    page: "/",
+    section: "SaasSection",
   },
   {
     label: "Get In Touch",
@@ -74,9 +74,9 @@ function Navbar({ canScroll, SetCanScroll }) {
 
   return (
     <div className="py-6 lg:py-12 px-5 lg:px-24 flex items-center justify-between ">
-      <div className="">
+      <a href="/" className="">
         <img src="/full-logo.svg" alt="Full Logo" />
-      </div>
+      </a>
       <div className="items-center gap-14 hidden xl:flex">
         {navLinks.map((navLink, index) => (
           <p

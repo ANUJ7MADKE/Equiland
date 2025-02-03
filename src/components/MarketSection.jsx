@@ -8,7 +8,7 @@ function MarketSection() {
       </div>
       <div className="max-w-2xl flex flex-col gap-7">
         <h2 className="text-[40px]  leading-[46px]">
-          Leave no market untouched,{" "}
+          Leave no market Untapped,{" "}
           <span className="text-primary-light">seamlessly execute multi-country projects,</span>{" "}
           by tapping into our global network of partner agencies and researchers
         </h2>
