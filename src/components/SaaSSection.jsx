@@ -149,7 +149,7 @@ function SaaSSection() {
                 hasScrolledDown ? "opacity-100 " : "opacity-0 absolute"
               } whitespace-nowrap`}
             >
-              streamlining the entire primary
+              for transparent, high-quality, and 
             </div>{" "}
           </div>
           <div className="flex flex-row relative gap-2">
@@ -159,7 +159,7 @@ function SaaSSection() {
                 hasScrolledDown ? "opacity-100 " : "opacity-0 "
               } whitespace-nowrap`}
             >
-              research funnel for transparency, quality,
+             agile insights, 
             </div>
             <div
               className={`transition-all duration-500 whitespace-nowrap ${
@@ -169,12 +169,12 @@ function SaaSSection() {
                 left: !hasScrolledDown ? 0 : `${insightsWidth}px`,
               }}
             >
-              {"  rooted in"}
+              {"  streamlining the entire primary research "}
             </div>
           </div>
           <div className="flex flex-row relative">
             <span className="block whitespace-nowrap">
-              and agility to your marketing process
+            funnel
             </span>
           </div>
         </div>

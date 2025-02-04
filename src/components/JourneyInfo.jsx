@@ -34,7 +34,7 @@ function JourneyInfo() {
           <h2 className="text-sm md:text-lg lg:text-[40px] lg:leading-tight  xl:leading-tight">
           One SaaS platform for{" "}
             <span className="text-primary-light">
-            transparent, high-quality and agile insights,
+            transparent, high-quality, and agile insights,
             </span>{" "}
             streamlining the entire primary research funnel
 
