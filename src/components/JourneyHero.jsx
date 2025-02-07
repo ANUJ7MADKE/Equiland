@@ -168,7 +168,7 @@ function JourneyHero() {
             riding
           </div>{" "}
         </div>
-        <div className="flex flex-row relative gap-2">
+      {hasScrolledDown && <><div className="flex flex-row relative gap-2">
           <div
             ref={insightsAgencyRef}
             className={`text-primary-light transition-opacity duration-500 ${
@@ -187,7 +187,7 @@ function JourneyHero() {
           >
             marketers as it is for consumers,
           </div>
-          <div
+          {/* <div
             className={`transition-all duration-500 whitespace-nowrap ${
               isAbsolute ? "absolute" : ""
             } ${!hasScrolledDown ? "block left-0" : "inline-block"}`}
@@ -196,16 +196,16 @@ function JourneyHero() {
             }}
           >
             and a
-          </div>
-        </div>
+          </div>*/}
+        </div> </> }
         <div className="flex flex-row relative gap-2">
           <div className={`whitespace-nowrap`}>
-            determined effort to conquer change led
+          and a determined effort to conquer change led
           </div>
         </div>
         <div className="flex flex-row relative">
           <span className="block whitespace-nowrap">
-          us to pursue Equilibrium
+          change led us to pursue Equilibrium
           </span>
         </div>
       </div>
@@ -232,8 +232,8 @@ function JourneyHero() {
       {/* paragraph */}
       <div className="flex flex-col lg:flex-row  lg:items-start  lg:justify-end gap-4 lg:gap-24 font-poppins ml-[20%] lg:m-0 lg:w-full mt-32 lg:mt-64 xl:mt-72 text-xs lg:text-lg leading-5 lg:leading-7">
         <p className="font-semibold  lg:w-[20%] first-text">
-          The binding fabric of this change is the human mindset which is ever
-          evolving and redefining the status-quo across industries and cultures.
+          The binding fabric of this change is the human mindset, which is ever
+          evolving and redefining the status-quo across industries and cultures
         </p>
 
         <div className="flex flex-col gap-4 lg:gap-10 lg:w-[40%] blue-text">
@@ -246,15 +246,15 @@ function JourneyHero() {
               </p>
               <p className="font-semibold">
                 Our core belief is that there is no replacement for human
-                conversations in any business vertical.{" "}
+                conversations in any business vertical
               </p>
               <p className="hidden xl:block">
                 As the consumer sits at the heart of any business, capturing the
                 essence of their sentiments is crucial. But, in a world
                 dominated by big-data and analytics, the beauty of the insights
                 that lie in human conversations and consumer immersions is often
-                forgotten, primarily because of the relatively higher resources
-                required for collecting and processing such data.
+                overlooked, primarily because of the relatively higher resources
+                required for collecting and processing such data
               </p>
             </>
           )}

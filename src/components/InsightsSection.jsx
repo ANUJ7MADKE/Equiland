@@ -241,8 +241,8 @@ function InsightsSection() {
         <p className="font-poppins text-lg mt-5">
           Rooted in classical business and research principles, we design every
           project with a blend of methodologies, but customize the approach to
-          best-fit your unique business needs. A glimpse at the list of endless
-          use-cases.
+          best-fit your unique business needs. A glimpse at the list of some of our
+          use-cases
         </p>
       </div>
 

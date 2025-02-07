@@ -26,7 +26,7 @@ function ContactUsSection() {
         <span className="text-primary-light">
           get in touch to explore <br /> collaboration opportunities
         </span>{" "}
-        on a journey together on<br />  Your next{" "}
+        on a journey together for<br />  Your next{" "}
         <span className="text-[#2ED89F] transition-all ease-in-out duration-300">{words[index]}</span> change
       </h2>
       <div className="mt-20 flex items-center justify-between gap-44">

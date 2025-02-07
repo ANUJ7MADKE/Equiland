@@ -128,7 +128,7 @@ function SaaSSection() {
       className="pt-32 pl-24 bg-primary-dark text-secondary-cream flex flex-col gap-14"
     >
       <div className="flex gap-14 items-stretch">
-        <img src="/logo-blue-square.svg" alt="Logo" />
+        <img src="/Eq Final Logo-24.png" alt="Logo" className="w-[150px]" />
 
         {/* <h2 className="text-[40px] mr-24 leading-tight">
           One SaaS platform{" "}
@@ -149,7 +149,7 @@ function SaaSSection() {
                 hasScrolledDown ? "opacity-100 " : "opacity-0 absolute"
               } whitespace-nowrap`}
             >
-              for transparent, high-quality, and 
+              for transparent, high-quality,  
             </div>{" "}
           </div>
           <div className="flex flex-row relative gap-2">
@@ -159,7 +159,7 @@ function SaaSSection() {
                 hasScrolledDown ? "opacity-100 " : "opacity-0 "
               } whitespace-nowrap`}
             >
-             agile insights, 
+             and agile insights, 
             </div>
             <div
               className={`transition-all duration-500 whitespace-nowrap ${
@@ -169,12 +169,12 @@ function SaaSSection() {
                 left: !hasScrolledDown ? 0 : `${insightsWidth}px`,
               }}
             >
-              {"  streamlining the entire primary research "}
+              {"  streamlining the entire "}
             </div>
           </div>
           <div className="flex flex-row relative">
             <span className="block whitespace-nowrap">
-            funnel
+            primary research funnel
             </span>
           </div>
         </div>
@@ -190,7 +190,7 @@ function SaaSSection() {
             </p>
             <p className="tracking-wide">
               Use the EQ platform for DIY research or reach out to Equilibrium
-              for 360° services – the choice is yours.
+              for 360° services – the choice is yours
             </p>
           </div>
 

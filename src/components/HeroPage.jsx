@@ -358,12 +358,12 @@ function HeroPage({ canScroll, setCanScroll }) {
         className="flex flex-col gap-44 items-center justify-center w-full"
       >
         <div className="grid grid-cols-2 xl:grid-cols-[30vw_1fr] gap-40 w-full ">
-          <div className="flex items-center relative">
+          <div className={`flex ${currentStage != "STAGE_3" ? "items-start  h-fit" : "items-center justify-center h-full"} relative flex-col`}>
             {SCROLL_STAGES[currentStage].type === "image" ? (
               <img
                 src={SCROLL_STAGES[currentStage].src}
                 alt="101"
-                className=" object-contain stage-3-image opacity-0 w-full"
+                className=" object-contain stage-3-image opacity-0 w-full absolute"
               />
             ) : (
               <video
@@ -379,7 +379,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                 />
               </video>
             )}
-            <div className="absolute bottom-0 left-0 w-full h-3 bg-secondary-cream"></div>
+            {currentStage != "STAGE_3"&&<div className="  left-0 w-full h-3 bg-secondary-cream absolute bottom-0"></div>}
           </div>
           <div
             className={`flex flex-col gap-10 ${
@@ -416,7 +416,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                           : "opacity-0 "
                       } whitespace-nowrap`}
                     >
-                      insights agency
+                      insights agency ,
                     </div>
                     <div
                       className={`transition-all duration-500 whitespace-nowrap ${
@@ -446,7 +446,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                   } font-poppins text-lg `}
                 >
                   Born from the heart to understand the mind, Equilibrium is a
-                  full service consumer insights agency, committed to providing
+                  full- service consumer insights agency, committed to providing
                   clients with agile insights through our proprietary
                   AI-enhanced SaaS platform
                 </p>
@@ -461,7 +461,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                         currentStage === "STAGE_2" ? "block" : "inline-block"
                       } whitespace-nowrap`}
                     >
-                      At the core of any business
+                      At the core of any business,
                     </div>
                     <div
                       className={`text-primary-light transition-opacity duration-500 ${
@@ -493,7 +493,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                           : "opacity-0 "
                       } whitespace-nowrap`}
                     >
-                      and emotions
+                      and human emotions,
                     </div>
                     <div
                       className={`transition-all duration-500 whitespace-nowrap ${
@@ -508,12 +508,12 @@ function HeroPage({ canScroll, setCanScroll }) {
                           currentStage === "STAGE_2" ? 0 : `${insightsWidth}px`,
                       }}
                     >
-                      technology can
+                      technology 
                     </div>
                   </div>
                   <div className="flex flex-row relative">
                     <span className="block whitespace-nowrap">
-                      only augment decision-making{" "}
+                    can only augment decision-making{" "}
                     </span>
                   </div>
                 </div>
