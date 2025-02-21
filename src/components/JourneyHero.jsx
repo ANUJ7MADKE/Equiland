@@ -200,7 +200,7 @@ function JourneyHero() {
         </div> </> }
         <div className="flex flex-row relative gap-2">
           <div className={`whitespace-nowrap`}>
-          and a determined effort to conquer change led
+          and a determined effort to conquer
           </div>
         </div>
         <div className="flex flex-row relative">
@@ -242,7 +242,7 @@ function JourneyHero() {
               <p className="">
                 While macro numbers don’t lie, consumers don’t tell the complete
                 truth either. Exploring the human behaviour from a holistic
-                angle of culture, context, and conscience becomes imperative
+                angle of culture, context, and consciousness becomes imperative
               </p>
               <p className="font-semibold">
                 Our core belief is that there is no replacement for human

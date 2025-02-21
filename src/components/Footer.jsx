@@ -27,7 +27,7 @@ function Footer() {
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-24">
           <h3 className="text-primary-light text-lg min-w-36">Reach Us</h3>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-48 gap-y-2 xl:gap-x-20 lg:gap-y-8 text-sm">
-            {["ameya@equilibrium.net", "+91 98203 81508"].map((link, index) => (
+            {["info@equilibriumnet.com"].map((link, index) => (
               <a href="#" key={index} className="font-light font-poppins whitespace-nowrap">
                 {link}
               </a>

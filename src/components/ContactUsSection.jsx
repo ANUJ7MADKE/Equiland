@@ -41,11 +41,11 @@ function ContactUsSection() {
             className="w-full border-b border-text-brownish bg-secondary-cream p-2 text-lg placeholder:text-primary-light placeholder:text-lg focus:outline-none"
             placeholder="Email ID"
           />
-          <input
+          {/* <input
             type="number"
             className="w-full border-b border-text-brownish bg-secondary-cream p-2 text-lg placeholder:text-primary-light placeholder:text-lg focus:outline-none"
             placeholder="Contact No."
-          />
+          /> */}
           <div className="border-b border-text-brownish">
             <textarea
               type="text-area"

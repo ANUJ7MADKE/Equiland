@@ -13,12 +13,13 @@ function JourneyInfo() {
           </h2>
           <div className="flex flex-col gap-10 text-lg w-[1500px]">
             <p className="font-light">
-              The Equilibrium journey started in 2023 with a simple mantra of
+              The Equilibrium journey started in 2023 with a simple thought of
               trying to find a solve for how can we bring in agility,
               transparency and improved accessibility to the market research and
-              consumer insights process, especially in qualitative research
-              domain led us to start building our very own, one-of-its kind SaaS
-              platform, which acts as an unstructured data pipeline, and much more
+              consumer insights process, especially in the domain of qualitative
+              research. This simple thought evolved into our very own,
+              one-of-its kind SaaS platform, which acts as an unstructured data
+              pipeline, and much more
             </p>
             <p className="font-light">
               Being mindful of the fact that clients need guidance in the
@@ -30,15 +31,18 @@ function JourneyInfo() {
         </div>
         <div className="flex w-full items-center gap-4 lg:gap-14 lg:items-center">
           <div className="w-[300px] flex items-center justify-center">
-          <img src="/Eq Final Logo-24.png" className="aspect-square w-[65%]" alt="Logo" />
+            <img
+              src="/Eq Final Logo-24.png"
+              className="aspect-square w-[65%]"
+              alt="Logo"
+            />
           </div>
           <h2 className="text-sm md:text-lg lg:text-[40px] lg:leading-tight  xl:leading-tight w-[1300px]">
-          One SaaS platform for{" "}
+            One SaaS platform for{" "}
             <span className="text-primary-light">
-            transparent, high-quality, and agile insights,
+              transparent, high-quality, and agile insights,
             </span>{" "}
             streamlining the entire primary research funnel
-
           </h2>
         </div>
       </div>

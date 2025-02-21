@@ -6,7 +6,7 @@ const tabsData = {
   1: [
     {
       heading: "Brand Health",
-      text: "A brand diagnostics and brand tracking to understand your brand’s performance vis-à-vis competitors",
+      text: "Brand diagnostics and brand tracking to understand your brand’s performance vis-à-vis competitors",
       colSpan: 1,
       rowSpan: 1,
     },

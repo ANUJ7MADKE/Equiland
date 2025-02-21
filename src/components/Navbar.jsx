@@ -75,7 +75,7 @@ function Navbar({ canScroll, SetCanScroll }) {
   return (
     <div className="py-6 lg:py-12 px-5 lg:px-24 flex items-center justify-between ">
       <a href="/" className="">
-        <img src="/Eq Final Logo-15.png" alt="Full Logo" className="w-[10rem]" />
+        <img src="/Eq Final Logo-14.png" alt="Full Logo" className="w-[10rem]" />
       </a>
       <div className="items-center gap-14 hidden xl:flex">
         {navLinks.map((navLink, index) => (

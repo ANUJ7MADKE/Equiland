@@ -358,7 +358,13 @@ function HeroPage({ canScroll, setCanScroll }) {
         className="flex flex-col gap-44 items-center justify-center w-full"
       >
         <div className="grid grid-cols-2 xl:grid-cols-[30vw_1fr] gap-40 w-full ">
-          <div className={`flex ${currentStage != "STAGE_3" ? "items-start  h-fit" : "items-center justify-center h-full"} relative flex-col`}>
+          <div
+            className={`flex ${
+              currentStage != "STAGE_3"
+                ? "items-start  h-fit"
+                : "items-center justify-center h-full"
+            } relative flex-col`}
+          >
             {SCROLL_STAGES[currentStage].type === "image" ? (
               <img
                 src={SCROLL_STAGES[currentStage].src}
@@ -379,7 +385,9 @@ function HeroPage({ canScroll, setCanScroll }) {
                 />
               </video>
             )}
-            {currentStage != "STAGE_3"&&<div className="  left-0 w-full h-3 bg-secondary-cream absolute bottom-0"></div>}
+            {currentStage != "STAGE_3" && (
+              <div className="  left-0 w-full h-3 bg-secondary-cream absolute bottom-0"></div>
+            )}
           </div>
           <div
             className={`flex flex-col gap-10 ${
@@ -416,7 +424,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                           : "opacity-0 "
                       } whitespace-nowrap`}
                     >
-                      insights agency ,
+                      insights agency,
                     </div>
                     <div
                       className={`transition-all duration-500 whitespace-nowrap ${
@@ -446,8 +454,8 @@ function HeroPage({ canScroll, setCanScroll }) {
                   } font-poppins text-lg `}
                 >
                   Born from the heart to understand the mind, Equilibrium is a
-                  full- service consumer insights agency, committed to providing
-                  clients with agile insights through our proprietary
+                  full-service consumer insights agency, committed to providing
+                  clients with agile insights through our proprietary
                   AI-enhanced SaaS platform
                 </p>
               </>
@@ -508,12 +516,12 @@ function HeroPage({ canScroll, setCanScroll }) {
                           currentStage === "STAGE_2" ? 0 : `${insightsWidth}px`,
                       }}
                     >
-                      technology 
+                      technology
                     </div>
                   </div>
                   <div className="flex flex-row relative">
                     <span className="block whitespace-nowrap">
-                    can only augment decision-making{" "}
+                      can only augment decision-making{" "}
                     </span>
                   </div>
                 </div>
@@ -524,13 +532,13 @@ function HeroPage({ canScroll, setCanScroll }) {
                   }`}
                 >
                   Blending conversational and observational insights with other
-                  data- points can do wonders for your business. But collecting
-                  and processing human insights collected through primary
-                  research can be resource intensive, and that's why{" "}
+                  data points can do wonders for your business. However,
+                  collecting and processing human insights through primary
+                  research can be resource-intensive. That's why,{" "}
                   <span className="text-primary-light ">
                     {" "}
-                    to empower your decision-making process, we have two
-                    distinct offerings for you...
+                    to empower your decision-making process, we offer two
+                    distinct solutions for you...
                   </span>
                 </p>
               </>
