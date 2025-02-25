@@ -16,7 +16,7 @@ function Footer() {
               "Our Services",
               "Get In Touch",
               "Our Journey",
-              "Join The Network",
+              // "Join The Network",
             ].map((link, index) => (
               <a href="#" key={index} className="font-light font-poppins whitespace-nowrap">
                 {link}

@@ -412,7 +412,7 @@ function HeroPage({ canScroll, setCanScroll }) {
                           : "opacity-0 absolute"
                       } whitespace-nowrap`}
                     >
-                      a tech powered consumer
+                      a tech-powered consumer
                     </div>{" "}
                   </div>
                   <div className="flex flex-row relative gap-2">
