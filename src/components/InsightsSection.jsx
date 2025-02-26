@@ -131,15 +131,26 @@ function InsightsSection() {
       }
     };
 
+    // Add keyboard event listener for down arrow
+    const handleKeyPress = (event) => {
+      if (event.code === "ArrowDown" && isVisible && !hasScrolledDown) {
+        setHasScrolledDown(true);
+        // Prevent default scrolling behavior
+        event.preventDefault();
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", handleKeyPress);
 
     return () => {
       if (section) {
         observer.unobserve(section);
       }
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [isVisible]); // Added isVisible to dependencies
+  }, [isVisible, hasScrolledDown]); // Added hasScrolledDown to dependencies
 
   useEffect(() => {
     if (hasScrolledDown) {

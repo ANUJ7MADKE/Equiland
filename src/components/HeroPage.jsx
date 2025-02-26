@@ -131,14 +131,16 @@ function HeroPage({ canScroll, setCanScroll }) {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      if (event.code === "Space") {
-        progressToNextStage();
+      if (event.code === "Space" || event.code === "ArrowDown") {
+        if (!canScroll && canProgress) {
+          progressToNextStage();
+        }
       }
     };
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [currentStage, canProgress]);
+  }, [currentStage, canProgress, canScroll]);
 
   useEffect(() => {
     // Handle video and animations sequence
